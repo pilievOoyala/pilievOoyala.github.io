@@ -547,9 +547,9 @@ acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/
       : ((document.compatMode || "") === "CSS1Compat")
         ? document.documentElement.scrollTop
         : document.body.scrollTop;
-    var shouldDetach = (
+    var shouldDetach = window.pp ? (
       scrollY > c.origin.top && !c.closed
-      && (window.pp.isPlaying() || window.pp.isAdPlaying())
+      && (window.pp.isPlaying() || window.pp.isAdPlaying()) : false;
     );
     var isDetached = (c.video.css("position") == "fixed");
 
