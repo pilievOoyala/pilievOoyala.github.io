@@ -581,7 +581,6 @@ acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/
 
 <link rel="stylesheet" type="text/css" href="https://accuweather.brightspotcdn.com/resource/esi/All.min.59db47201720df433aca990d1c5c3f81.gz.css">
 <script type="text/javascript" src="https://accuweather.brightspotcdn.com/resource/esi/slick.ed45e555b6bec615ce06f604b4c5c2f6.gz.js"></script>
-<script async="" type="text/javascript" src="//smartplugin.youbora.com/v5/javascript/ooyalav4/stable/sp.min.js"></script>
 <script type="text/javascript" src="https://accuweather.brightspotcdn.com/resource/esi/main.min.abca4ffa3037928be286d9920ce18ab1.gz.js"></script>
 
 
@@ -1644,6 +1643,11 @@ acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/
                 }
 
                 function onReady() {
+                  var youbora = document.createElement('script');
+                  youbora.src = "//smartplugin.youbora.com/v5/javascript/ooyalav4/stable/sp.min.js";
+                  youbora.async = true;
+                  document.head.appendChild(youbora);
+
                   OO.ready(function () {
                       window.pp = OO.Player.create("EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", "RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", playerParam);
                   });
