@@ -2,9 +2,8 @@
 <html>
 <head>
 
-
-<script async="" src="//player.ooyala.com/core/e4c115a4f4e74866817e1c7fa60dfc39?plugins=bm,main,ima,pl" onload="ready()"></script>
-<script async="" type="text/javascript" src="//smartplugin.youbora.com/v5/javascript/ooyalav4/stable/sp.min.js"></script>
+<script async src="//player.ooyala.com/core/e4c115a4f4e74866817e1c7fa60dfc39?plugins=bm,main,ima,pl,ga&debug=true" onLoad="onReady()"></script>
+<!--script async="" type="text/javascript" src="//smartplugin.youbora.com/v5/javascript/ooyalav4/stable/sp.min.js"></script-->
 </head>
 <body>
 
@@ -13,6 +12,7 @@
         <div class="EmbedOoyalaPlaylist-video" id="EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704" style="margin:40px 20px 20px 20px;height: 315px;">
             <script type="text/javascript">
                 var playerParam = {
+                    debug:true,
                     "pcode": "9ocWkyOis6XHszQOCRXkzmxI5sLz",
                     "youbora": {"accountCode":"accuweather"},
                     "playerBrandingId": "21f2a0d884d84e13a1096bcba299860c",
@@ -104,9 +104,11 @@
                     });
                 }
 
-                function ready() {
-                    window.pp = OO.Player.create("EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", "RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", playerParam);
-                };
+                function onReady() {
+                  OO.ready(function () {
+                      window.pp = OO.Player.create("EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", "RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", playerParam);
+                  });
+                }
            </script>
         </div>
 

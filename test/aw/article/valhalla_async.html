@@ -577,7 +577,7 @@ acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/
 </script>
 
 
-  <script async="" src="//player.ooyala.com/core/e4c115a4f4e74866817e1c7fa60dfc39?plugins=bm,main,ima,pl,ga" onload="ready()"></script>
+  <script async src="//player.ooyala.com/core/e4c115a4f4e74866817e1c7fa60dfc39?plugins=bm,main,ima,pl,ga" onload="onReady()"></script>
 
 <link rel="stylesheet" type="text/css" href="https://accuweather.brightspotcdn.com/resource/esi/All.min.59db47201720df433aca990d1c5c3f81.gz.css">
 <script type="text/javascript" src="https://accuweather.brightspotcdn.com/resource/esi/slick.ed45e555b6bec615ce06f604b4c5c2f6.gz.js"></script>
@@ -1643,9 +1643,11 @@ acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/
                     });
                 }
 
-                function ready() {
-                    window.pp = OO.Player.create("EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", "RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", playerParam);
-                };
+                function onReady() {
+                  OO.ready(function () {
+                      window.pp = OO.Player.create("EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", "RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", playerParam);
+                  });
+                }
            </script>
         </div>
 
