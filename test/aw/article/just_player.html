@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <script type="text/javascript">
+    //start timers
+    console.time("PLAYER_LOAD_TIME");
+    console.time("PLAYER_TIME_TO_FIRST_FRAME");
+  </script>
 
 <link rel="stylesheet" type="text/css" href="//player.ooyala.com/static/v4/production/latest/skin-plugin/html5-skin.min.css">
 <script type="text/javascript" src="//player.ooyala.com/static/v4/production/latest/core.min.js"></script>
@@ -77,38 +81,15 @@
                 function onCreate(player) {
                     "use strict";
                     player.mb.subscribe("*", "example", function (eventName, params) {
-                        var label = '';
-                        if (params) {
-                            label = player.getTitle() + ' -- ' + JSON.stringify(params);
-                        } else {
-                            label = player.getTitle();
-                        }
-
                         switch (eventName) {
-                            case OO.EVENTS.AD_SKIPPED:
-                            case OO.EVENTS.ADS_PLAYED:
-                            case OO.EVENTS.INITIAL_PLAY:
-                            case OO.EVENTS.PLAY:
-                            case OO.EVENTS.WILL_PLAY_FROM_BEGINNING:
-                            case OO.EVENTS.PLAY_FAILED:
-                            case OO.EVENTS.PLAYED:
-                            case OO.EVENTS.ADS_CLICKED:
-                            case OO.EVENTS.ADS_ERROR:
-                            case OO.EVENTS.ERROR:
-                            case OO.EVENTS.REPLAY:
-                                if (eventName !== OO.EVENTS.INITIAL_PLAY) {
-                                    console.log("OOYALA DEBUG: sending out GA: " + eventName);
-                                    // track video played in google analytics
-                                    aw_ga('awTracker.send', 'event', {
-                                        eventCategory: 'Video::Ooyala',
-                                        eventAction: eventName,
-                                        eventLabel: label,
-                                        eventValue: 2
-                                    });
-                                }
-                                break;
-                            default:
-                                break;
+                          case OO.EVENTS.PLAYBACK_READY:
+                            console.timeEnd("PLAYER_LOAD_TIME");
+                            break;
+                          case OO.EVENTS.PLAYING:
+                              console.timeEnd("PLAYER_TIME_TO_FIRST_FRAME");
+                            break;
+                          default:
+                            break;
                         }
                     });
                 }
