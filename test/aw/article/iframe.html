@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script type="text/javascript">
+    //start timers
+    console.time("PLAYER_LOAD_TIME");
+    console.time("PLAYER_TIME_TO_FIRST_FRAME");
+  </script>
+  <script src="//player.ooyala.com/core/21f2a0d884d84e13a1096bcba299860c?plugins=bm,main,ima,pl,ga"></script>
+  <script type="text/javascript" src="//smartplugin.youbora.com/v5/javascript/ooyalav4/stable/sp.min.js"></script>
+</head>
+<body>
+  <div  id="EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704" >
+      <script type="text/javascript">
+          var playerParam = {
+              "pcode": "9ocWkyOis6XHszQOCRXkzmxI5sLz",
+              "youbora": {"accountCode":"accuweather"},
+              "playerBrandingId": "21f2a0d884d84e13a1096bcba299860c",
+              "autoplay": true,
+              "autoplayPlaylistAfterInitialPlay": true,
+              "encodingPriority": ["hls", "hds", "dash", "mp4"],
+              "iosPlayMode":"inline",
+              "playlistsPlugin": {
+                  "hideUi": true,
+                  "data": ["f199a29b59cb43dbac4c671905b127fb"]},
+              "loop": false,
+              "useFirstVideoFromPlaylist": true,
+              "google-ima-ads-manager": {
+                  "useGoogleAdUI": true,
+                  "showAdControls": true,
+                  "all_ads": [
+                      {
+                          "position_type": "r",
+                          "tag_url": "https://pubads.g.doubleclick.net/gampad/ads?sz=400x300&iu=/6581/accuwx.us.newsandvideo/video-embed&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]&cmsid=5961&vid=[oo_embedcode]"
+                      }
+                  ]
+              },
+              "googleAnalytics": {
+                  "trackerName": "awTracker"
+              },
+              "ComScoreOoyalaPlugin": {
+                  "c2": "6005068", // your comScore Client ID value
+                  "labelmapping": "c6=sport, c4=\"extremesportscom\""
+              },
+              "skin": {
+                  "inline": {
+                      "general": {
+                          "accentColor":"#f05514"},
+                      "adScreen": {
+                          "showControlBar": true},
+                      "shareScreen": {
+                          "shareContent": ["social", "embed"],
+                          "socialContent": []},
+                      "controlBar": {
+                          "adScrubberBar": {
+                              "playedColor": "rgba(0,175,190,1)",
+                              "scrubberHandleColor": "rgba(0,175,190,1)"}},
+                      "pauseScreen": {
+                          "showDescription": false
+                      }
+                  }
+              },
+              onCreate: window.onCreate
+          };
+          playerParam.playlistsPlugin.data = getParam
+
+          function onCreate(player) {
+              "use strict";
+              player.mb.subscribe("*", "example", function (eventName, params) {
+                  switch (eventName) {
+                    case OO.EVENTS.PLAYBACK_READY:
+                      console.timeEnd("PLAYER_LOAD_TIME");
+                      break;
+                    case OO.EVENTS.PLAYING:
+                        console.timeEnd("PLAYER_TIME_TO_FIRST_FRAME");
+                      break;
+                    default:
+                      break;
+                  }
+              });
+          }
+
+          OO.ready(function () {
+              window.pp = OO.Player.create("EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", "RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704", playerParam);
+          });
+     </script>
+  </div>
+</body>
+
+</html>
