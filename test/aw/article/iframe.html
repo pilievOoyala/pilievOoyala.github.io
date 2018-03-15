@@ -4,8 +4,8 @@
 
   <script type="text/javascript">
     //start timers
-    console.time("PLAYER_LOAD_TIME");
-    console.time("PLAYER_TIME_TO_FIRST_FRAME");
+  //  console.time("PLAYER_LOAD_TIME");
+  //  console.time("PLAYER_TIME_TO_FIRST_FRAME");
   </script>
   <script src="//player.ooyala.com/core/21f2a0d884d84e13a1096bcba299860c?plugins=bm,main,ima,pl,ga"></script>
   <script type="text/javascript" src="//smartplugin.youbora.com/v5/javascript/ooyalav4/stable/sp.min.js"></script>
@@ -63,17 +63,17 @@
               },
               onCreate: window.onCreate
           };
-          //playerParam.playlistsPlugin.data = getParam
+        //  playerParam.playlistsPlugin.data = getParam
 
           function onCreate(player) {
               "use strict";
               player.mb.subscribe("*", "example", function (eventName, params) {
                   switch (eventName) {
                     case OO.EVENTS.PLAYBACK_READY:
-                      console.timeEnd("PLAYER_LOAD_TIME");
+                      console.log("PLAYER_LOAD_TIME");
                       break;
                     case OO.EVENTS.PLAYING:
-                        console.timeEnd("PLAYER_TIME_TO_FIRST_FRAME");
+                        console.log("PLAYER_TIME_TO_FIRST_FRAME");
                       break;
                     default:
                       break;
