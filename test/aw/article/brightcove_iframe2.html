@@ -1,0 +1,999 @@
+! function(e, t) {
+    var n = {
+        debug: !1,
+        create: function(n, i) {
+            return t(this, n, i, e)
+        },
+        isInIframe: function() {
+            try {
+                return e.parent && e.self !== e.top
+            } catch (t) {
+                return !0
+            }
+        },
+        error: function(e) {
+            if (this.debug) throw e
+        }
+    };
+    "object" == typeof module && module.exports ? module.exports = n : e.IframeClient = n
+}(window, function(e, t, n, i) {
+    function a() {
+        return Math.floor(65536 * (1 + Math.random())).toString(16).substring(1)
+    }
+    var o = a() + a() + "-" + a() + "-" + a() + "-" + a() + "-" + a() + a() + a(),
+        r = "@app",
+        s = t || "xframe",
+        l = "@res",
+        c = 200,
+        d = [],
+        u = {},
+        p = {},
+        m = 0,
+        h = null,
+        y = null;
+    return {
+        host: n || "*",
+        get id() {
+            return o
+        },
+        src: function(e) {
+            return "string" == typeof e && (e = document.querySelector(e)), e && e instanceof Element && e.contentWindow && (e = e.contentWindow), e && "function" == typeof e.postMessage ? e : null
+        },
+        post: function(t, n, i) {
+            if (t = this.src(t), !t || !n) return e.error("invalid post");
+            var a = "string" == typeof n ? {
+                message: n
+            } : n;
+            if (void 0 !== i && (a.value = i), a.message) {
+                a[r] = s;
+                try {
+                    t.postMessage(JSON.stringify(a), this.host)
+                } catch (o) {
+                    e.error(o)
+                }
+            }
+        },
+        request: function(t, n, i, a, r) {
+            function s() {
+                var e = !1;
+                for (var t in u)
+                    if (u.hasOwnProperty(t)) {
+                        var n = u[t];
+                        n.attempts++ < n.timeout / c ? (l.post(n.src, n.data), e = !0) : l.end(t, new Error("request timeout"))
+                    }
+                h = e ? setTimeout(s, c) : null
+            }
+            if (t = this.src(t), !t || !n) return e.error("invalid request");
+            var l = this,
+                d = o + "-" + ("0000" + m++).slice(-4),
+                p = u[d] = {
+                    timeout: r || 15e3,
+                    attempts: 0,
+                    src: t,
+                    cb: a,
+                    data: {
+                        message: n,
+                        value: i,
+                        id: d
+                    }
+                };
+            return h ? this.post(t, p.data) : s(), d
+        },
+        end: function(e, t) {
+            var n = e.id || e,
+                i = t && t.abort;
+            if (u.hasOwnProperty(n)) {
+                var a = u[n];
+                delete u[n], i || "function" != typeof a.cb || a.cb(t || null, e.value)
+            }
+        },
+        on: function(e, t, n) {
+            return d.push({
+                message: e,
+                fn: t,
+                ctx: n
+            }), this
+        },
+        listen: function() {
+            function e(e, t) {
+                for (var n, i = 0; i < d.length; i++) {
+                    var a = d[i];
+                    a.message === t.message && (n = a.fn.call(a.ctx, e, t.value))
+                }
+                return n
+            }
+            if (!y) {
+                var t = this;
+                y = function(n) {
+                    var i, a = "*" === t.host || String(n.origin).indexOf(t.host) >= 0;
+                    if (a && /^\{.*\}$/.test(n.data)) try {
+                        i = JSON.parse(n.data)
+                    } catch (o) {
+                        i = null
+                    }
+                    if (a && i && i[r] === s)
+                        if (i.id) {
+                            var c = i.message === l;
+                            c && u.hasOwnProperty(i.id) ? t.end(i) : c || p.hasOwnProperty(i.id) || (p[i.id] = !0, t.post(n.source, {
+                                message: l,
+                                value: e(n, i) || "success",
+                                id: i.id
+                            }))
+                        } else e(n, i)
+                }, i.addEventListener("message", y)
+            }
+            return this
+        },
+        stopListening: function() {
+            return y && (i.removeEventListener("message", y), y = null), this
+        },
+        dispose: function() {
+            clearInterval(h), this.stopListening()
+        }
+    }
+}),
+function(e) {
+    function t(e) {
+        var t = "UA-66896115-1";
+        ! function(e, t, n, i, a, o, r) {
+            e.GoogleAnalyticsObject = a, e[a] = e[a] || function() {
+                (e[a].q = e[a].q || []).push(arguments)
+            }, e[a].l = 1 * new Date, o = t.createElement(n), r = t.getElementsByTagName(n)[0], o.async = 1, o.src = i, r.parentNode.insertBefore(o, r)
+        }(window, document, "script", "//www.google-analytics.com/analytics.js", "ga"), ga("create", e || t, "auto")
+    }
+    var n = {
+        clients: {},
+        configs: {},
+        placements: {},
+        videos: {},
+        plugins: {},
+        viewed: !1,
+        ANALYTICS: "analytics",
+        ERROR: "error",
+        HOST: "host",
+        PAUSE: "pause",
+        PAUSE_OTHERS: "pauseOthers",
+        PLAY: "play",
+        VIEW: "view",
+        START: "Start",
+        FIRST_QUARTILE: "FirstQuartile",
+        SECOND_QUARTILE: "SecondQuartile",
+        THIRD_QUARTILE: "ThirdQuartile",
+        THIRTY_SECONDS: "ThirtySeconds",
+        COMPLETE: "Complete",
+        CONTENT: "content",
+        AD: "ad",
+        DISCOVERY: "discovery",
+        YES: /^(true|1)$/,
+        isMobileDevice: function() {
+            return "mobile" === this.device
+        },
+        isTabletDevice: function() {
+            return "tablet" === this.device
+        },
+        deviceRegex: {
+            MOBILE_REGEX: /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i,
+            PREFIX_REGEX: /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i,
+            TABLET_REGEX: /android|ipad|playbook|silk/i,
+            ANDROID_REGEX: /android/i,
+            IOS_REGEX: /ip(hone|od)|ipad/i
+        },
+        setProfile: function(e) {
+            var t, n = navigator.userAgent || navigator.vendor || window.opera;
+            this.deviceRegex.MOBILE_REGEX.test(n) || this.deviceRegex.PREFIX_REGEX.test(n.substr(0, 4)) ? t = "mobile" : this.deviceRegex.TABLET_REGEX.test(n) && (t = "tablet"), this.device = t || "desktop", this.isAndroid = this.deviceRegex.ANDROID_REGEX.test(n), this.isIos = this.deviceRegex.IOS_REGEX.test(n), this.profile = e, this.configs = e.configs || {}, this.placements = e.device[this.device] || {}
+        },
+        createVideo: function(e, t, i, a) {
+            for (var o = document.querySelector(t.el), r = this.placements[t.placement] || {}, s = [t.player_type, r.preferred, "youtube", "brightcove"], l = 0; l < s.length; l++) {
+                var c = s[l],
+                    d = this.configs[r[c]] || {},
+                    u = this.clients[c];
+                if (u && u.validate(e, d)) break;
+                u = null
+            }
+            return n.placement = t.placement, u ? (this.c = new u(o, e, this.extend(d, t), i, a), this.viewed && this.c.markAsViewed()) : this.failVideo("Video asset could not be played."), this.c
+        },
+        failVideo: function(e) {
+            location.href = "/embed/error"
+        },
+        extend: function(e) {
+            for (var t = 1; t < arguments.length; t++) {
+                var n = arguments[t];
+                for (var i in n) n.hasOwnProperty(i) && (e[i] = n[i])
+            }
+            return e
+        },
+        windowError: function(e, t, i, a, o) {
+            n.Client.track(n.ERROR, 0, "Window error " + e + " " + t + " " + o)
+        },
+        post: function(t, n) {
+            this.xframe.post(e.parent, t, n)
+        },
+        request: function(t, n, i, a) {
+            this.xframe.request(e.parent, t, n, i, a)
+        },
+        getScript: function(e, t) {
+            var n = this._s = this._s || {},
+                i = function(e) {
+                    "function" == typeof e && e()
+                };
+            if (n.hasOwnProperty(e)) n[e] ? n[e].push(t) : setTimeout(function() {
+                i(t)
+            }, 0);
+            else {
+                n[e] = [t];
+                var a = document.createElement("script"),
+                    o = document.getElementsByTagName("script")[0];
+                a.async = 1, o.parentNode.insertBefore(a, o), a.onload = a.onreadystatechange = function(t, o) {
+                    (o || !a.readyState || /loaded|complete/.test(a.readyState)) && (a.onload = a.onreadystatechange = null, o ? delete n[e] : (n[e].forEach(i), n[e] = null))
+                }, a.src = e
+            }
+        },
+        getHost: function(e) {
+            var n = this._h = this._h || {
+                    host: {
+                        url: location.href,
+                        origin: location.origin,
+                        iframe: IframeClient.isInIframe(),
+                        title: null,
+                        api: !1
+                    }
+                },
+                i = this,
+                a = n.host,
+                o = function(e) {
+                    "function" == typeof e && e(a)
+                };
+            a.iframe && !n.hasOwnProperty("q") ? (n.q = [e], i.request(i.HOST, null, function(e, r) {
+                i.extend(a, r || {}), a.api || t(), n.q.forEach(o), n.q = null
+            }, 8e3)) : n.q ? n.q.push(e) : setTimeout(function() {
+                o(e)
+            }, 0)
+        },
+        hostUrl: function() {
+            return "" === document.referrer ? null : document.referrer
+        },
+        log: function() {
+            console && console.log.apply(console, arguments)
+        }
+    };
+    n.xframe = IframeClient.create("volume", "*").on(n.VIEW, function() {
+        n.c && n.c.markAsViewed(), n.viewed = !0
+    }).on(n.PLAY, function() {
+        n.c && n.c.play()
+    }).on(n.PAUSE, function() {
+        n.c && n.c.pause()
+    }).listen(), n.getHost(), e.Volume = n
+}(window),
+function(e) {
+    var t, n, i, a, o, r, s = "vjs-up-next",
+        l = {
+            initialize: function(e, n, i, c, d) {
+                e && (a = e, t = {
+                    countdown: 5,
+                    autoadvance: !1,
+                    user_autoadvance: !0,
+                    loop: !1,
+                    default_image: "http://assets.volume.voxmedia.com/production/upnext/default-thumb.jpg"
+                }, o = window.videojs.mergeOptions(t, i), r = {
+                    playlist: n,
+                    playlistOptions: o,
+                    currentIndex: c,
+                    nextIndex: void 0,
+                    currentVideo: void 0,
+                    nextVideo: void 0
+                }, r.currentVideo = l.playlist.currentVideo(), r.nextVideo = l.playlist.nextVideo(), r.once = d, r.playlist && (r.playlistOptions["class"] && a.addClass(r.playlistOptions["class"]), a.addClass(s), l.utilities.loadSprite(), a.on("loadstart", l.handlers.onVideoLoadStart), a.on("ended", l.handlers.onVideoEnded)))
+            },
+            builders: {
+                endscreenContainer: function() {
+                    var e = document.createElement("div");
+                    return e.className = s + "__container", e.appendChild(this.replayVideo()), r.nextVideo && (e.appendChild(this.nextVideo()), r.playlistOptions.user_autoadvance && e.appendChild(this.autoplayToggle())), e
+                },
+                replayVideo: function() {
+                    var e = s + "__replay",
+                        t = document.createElement("div"),
+                        n = document.createElement("h4"),
+                        i = document.createElement("img"),
+                        a = document.createElement("div"),
+                        c = document.createElement("h5");
+                    return t.className = e, t.setAttribute("data-video-id", r.currentVideo.id), i.src = r.currentVideo.thumbnail || o.default_image, i.className = e + "-poster", n.textContent = r.currentVideo.name, n.className = e + "-title", a.className = e + "-action-container", c.textContent = "Watch Again", c.className = e + "-action", a.appendChild(l.utilities.icon("icon-replay")), a.appendChild(c), t.appendChild(i), t.appendChild(n), t.appendChild(a), t.addEventListener("click", l.handlers.replay, !1), t
+                },
+                nextVideo: function() {
+                    var e = s + "__next-video",
+                        t = document.createElement("div"),
+                        n = document.createElement("div"),
+                        i = document.createElement("h3"),
+                        a = document.createElement("h4"),
+                        o = this.countdownTimer();
+                    return t.className = e, t.setAttribute("data-video-id", r.nextVideo.id), n.className = e + "-text-container", i.className = e + "-label", i.textContent = "Up Next:", a.className = e + "-title", a.textContent = r.nextVideo.name, n.appendChild(i), n.appendChild(a), t.appendChild(o), t.appendChild(n), a.addEventListener("click", l.handlers.nextVideo, !1), t
+                },
+                countdownTimer: function() {
+                    var e = s + "__countdown",
+                        t = document.createElement("div"),
+                        n = "http://www.w3.org/2000/svg",
+                        i = document.createElementNS(n, "svg"),
+                        a = document.createElementNS(n, "circle"),
+                        r = document.createElementNS(n, "text"),
+                        c = l.utilities.icon("icon-pause"),
+                        d = l.utilities.icon("icon-play"),
+                        u = l.utilities.icon("icon-play"),
+                        p = document.createElementNS(n, "g"),
+                        m = 40,
+                        h = Math.PI * (2 * m);
+                    i.setAttribute("height", "100%"), i.setAttribute("width", "100%"), i.setAttribute("xmlns", "http://www.w3.org/2000/svg"), i.setAttribute("viewBox", "0 0 100 100"), a.setAttribute("cx", "50"), a.setAttribute("cy", "50"), a.setAttribute("r", m.toString());
+                    var y = a.cloneNode();
+                    return y.setAttribute("stroke-dasharray", h + "px"), y.setAttribute("stroke-dashoffset", h + "px"), y.style.animationDuration = o.countdown + "s", y.setAttribute("transform", "rotate(-90, 50, 50)"), c.setAttribute("height", "70"), c.setAttribute("width", "70"), c.setAttribute("x", "15"), c.setAttribute("y", "2"), d.setAttribute("height", "70"), d.setAttribute("width", "70"), d.setAttribute("x", "15"), d.setAttribute("y", "2"), u.setAttribute("height", "100"), u.setAttribute("width", "100"), u.setAttribute("x", "0"), u.setAttribute("y", "0"), u.setAttribute("class", s + "__icon " + s + "__icon-play " + s + "__icon-play-big"), r.setAttribute("y", "72"), r.setAttribute("x", "50"), r.setAttribute("text-anchor", "middle"), t.setAttribute("class", e), a.setAttribute("class", e + "-timer-bg"), y.setAttribute("class", e + "-timer"), r.setAttribute("class", e + "-text"), p.appendChild(a), p.appendChild(y), p.appendChild(c), p.appendChild(d), p.appendChild(u), p.appendChild(r), i.appendChild(p), t.appendChild(i), c.addEventListener("click", l.handlers.pauseCountdown, !1), d.addEventListener("click", l.handlers.nextVideo, !1), u.addEventListener("click", l.handlers.nextVideo, !1), t
+                },
+                autoplayToggle: function() {
+                    var e = document.createElement("div"),
+                        t = document.createElement("legend"),
+                        n = document.createElement("input"),
+                        i = document.createElement("label"),
+                        a = document.createElement("span");
+                    return n.setAttribute("type", "checkbox"), n.id = "autoplay-toggle", i.setAttribute("for", "autoplay-toggle"), e.className = s + "__autoplay-toggle", a.className = s + "__autoplay-status", t.textContent = "Autoplay", e.appendChild(n), e.appendChild(i), e.appendChild(a), e.appendChild(t), i.addEventListener("click", l.handlers.autoplay, !1), e
+                }
+            },
+            handlers: {
+                onVideoLoadStart: function() {
+                    n && document.body.contains(n) && l.utilities.destroyContainer(n), r.nextVideo || a.addClass(s + "__final-screen"), n = l.builders.endscreenContainer()
+                },
+                onVideoEnded: function() {
+                    if (a.supportsFullScreen() ? a.exitFullscreen() : a.exitFullWindow(), r.nextVideo && a.poster(r.nextVideo.poster || o.default_image), l.utilities.insertContainer(n), o.autoadvance) {
+                        if (o.user_autoadvance) {
+                            var e = document.getElementById("autoplay-toggle");
+                            e.click(), l.utilities.updateAutoplayStatus(n, o.autoadvance)
+                        }
+                        a.addClass(s + "__autoadvance-enabled"), a.removeClass(s + "__autoadvance-disabled"), l.utilities.runTimer(n)
+                    } else a.addClass(s + "__autoadvance-disabled"), a.removeClass(s + "__autoadvance-enabled"), l.utilities.updateAutoplayStatus(n, o.autoadvance)
+                },
+                replay: function() {
+                    l.utilities.destroyContainer(n), n = l.builders.endscreenContainer(), l.playlist.play(r.currentIndex)
+                },
+                nextVideo: function() {
+                    l.playlist.play(r.nextIndex)
+                },
+                autoplay: function() {
+                    r.playlistOptions.autoadvance = !r.playlistOptions.autoadvance, l.utilities.updateAutoplayStatus(n, o.autoadvance)
+                },
+                pauseCountdown: function() {
+                    var e = n.getElementsByClassName(s + "__countdown-timer")[0];
+                    clearInterval(i), e.style.animationPlayState = "paused", a.addClass(s + "__countdown-paused")
+                },
+                triggerEndedTimeUpdate: function() {
+                    a.currentTime() >= a.duration() && (a.trigger("discoveryEnded"), l.handlers.onVideoEnded())
+                },
+                triggerEndedMobile: function() {
+                    ("tablet" === window.Volume.device || "mobile" === window.Volume.device) && l.handlers.onVideoEnded()
+                }
+            },
+            utilities: {
+                loadSprite: function() {
+                    if (!(document.getElementsByClassName(s + "__sprite").length > 0)) {
+                        var e = new XMLHttpRequest;
+                        e.open("GET", o.sprite_path, !0), e.send(), e.onload = function() {
+                            var t = document.createElement("div");
+                            t.className = s + "__sprite", t.innerHTML = e.responseText, document.body.insertBefore(t, document.body.firstElementChild)
+                        }
+                    }
+                },
+                icon: function(e) {
+                    var t = "http://www.w3.org/2000/svg",
+                        n = "http://www.w3.org/1999/xlink",
+                        i = document.createElementNS(t, "svg"),
+                        a = document.createElementNS(t, "use");
+                    return i.setAttribute("class", s + "__icon " + s + "__" + e), a.setAttributeNS(n, "xlink:href", "#" + e), i.setAttribute("viewBox", "0 0 100 100"), i.setAttribute("preserveAspectRatio", "xMidYMid meet"), i.appendChild(a), i
+                },
+                insertContainer: function(e) {
+                    var t = a.el().getElementsByClassName("vjs-big-play-button")[0];
+                    a.el().insertBefore(e, t)
+                },
+                destroyContainer: function(e) {
+                    var t = e.getElementsByClassName(s + "__replay")[0],
+                        n = e.getElementsByClassName(s + "__next-video-title")[0],
+                        c = e.getElementsByClassName(s + "__icon-play")[0],
+                        d = e.getElementsByClassName(s + "__icon-pause")[0],
+                        u = e.getElementsByClassName(s + "__icon-play-big")[0];
+                    if (t && t.removeEventListener("click", l.handlers.replay, !1), r.nextVideo && (n.removeEventListener("click", l.handlers.nextVideo, !1), c.removeEventListener("click", l.handlers.nextVideo, !1), d.removeEventListener("click", l.handlers.pauseCountdown, !1), u.removeEventListener("click", l.handlers.nextVideo, !1)), o.user_autoadvance) {
+                        var p = e.getElementsByClassName(s + "__autoplay-toggle")[0];
+                        p && p.removeEventListener("click", l.handlers.autoplay, !1)
+                    }
+                    e.parentNode && e.parentNode.removeChild(e), i && clearInterval(i), a && (a.off("fullscreenchange", l.handlers.triggerEndedMobile), a.off("timeupdate", l.handlers.triggerEndedTimeUpdate))
+                },
+                runTimer: function(e) {
+                    if (o.autoadvance && r.nextVideo) {
+                        i && clearInterval(i);
+                        var t = o.countdown,
+                            n = e.getElementsByClassName(s + "__countdown-text")[0],
+                            c = e.getElementsByClassName(s + "__countdown-timer")[0];
+                        c.style.animationPlayState = "running", a.removeClass(s + "__countdown-paused"), n.textContent = ":" + ("00" + t).slice(-2), i = setInterval(function() {
+                            t -= 1, n.textContent = ":" + ("00" + t).slice(-2), 0 >= t && (clearInterval(i), l.handlers.nextVideo())
+                        }, 1e3)
+                    }
+                },
+                updateAutoplayStatus: function(e, t) {
+                    if (o.user_autoadvance) {
+                        var r = e.getElementsByClassName(s + "__autoplay-status")[0];
+                        a.removeClass(s + "__countdown-paused"), t ? (r.textContent = "On", a.addClass(s + "__autoadvance-enabled"), a.removeClass(s + "__autoadvance-disabled"), l.utilities.runTimer(n)) : (r.textContent = "Off", a.addClass(s + "__autoadvance-disabled"), a.removeClass(s + "__autoadvance-enabled"), i && clearInterval(i))
+                    }
+                },
+                resetOnce: function() {
+                    for (var e = ["vjs-onceux-ad-container", "vjs-onceux-control-bar", "vjs-onceux-controls", "vjs-overlay-onceux-countdown", "vjs-overlay-onceux-skipad", "vjs-overlay-onceux-switch-source"], t = 0; t < e.length; t++)
+                        for (var n = document.getElementsByClassName(e[t]), i = 0; i < n.length; i++) {
+                            var o = n[i];
+                            o.parentNode.removeChild(o), a.trigger(o, "dispose")
+                        }
+                    for (var s = ["onceux-linearad-start", "onceux-linearad-impression", "onceux-linearad-firstQuartile", "onceux-linearad-midpoint", "onceux-linearad-thirdQuartile", "onceux-linearad-complete", "onceux-adroll-start", "onceux-adroll-complete", "onceux-ads-complete", "onceux-linearad-skipped", "onceux-linearad-mute", "onceux-linearad-unmute", "onceux-linearad-pause", "onceux-linearad-resume", "onceux-companionad-creativeView"], t = 0; t < s.length; t++) {
+                        var l = s[t];
+                        a.off(l)
+                    }
+                    a.onceux = null, a.onceux = r.once
+                }
+            },
+            playlist: {
+                currentVideo: function() {
+                    return r.playlist[r.currentIndex]
+                },
+                nextVideo: function() {
+                    return r.currentIndex === r.playlist.length - 1 ? r.playlistOptions.loop ? (r.nextIndex = 0, r.playlist[0]) : (r.nextIndex = null, null) : (r.nextIndex = r.currentIndex + 1, r.playlist[r.nextIndex])
+                },
+                play: function(e) {
+                    if (a.off("timeupdate", l.handlers.triggerEndedTimeUpdate), a.off("fullscreenchange", l.handlers.triggerEndedMobile), r.playlist[e]) {
+                        var t = r.playlist[e],
+                            n = t.sources[0].src;
+                        l.utilities.resetOnce(), a.onceux && n.indexOf("onceux.unicornmedia.com") >= 0 ? "function" == typeof a.onceux && a.onceux({
+                            metadataUri: n
+                        }) : a.src({
+                            src: n
+                        }), r.currentIndex = e, r.currentVideo = l.playlist.currentVideo(), r.nextVideo = l.playlist.nextVideo(), a.el().setAttribute("data-video-title", t.name), a.el().setAttribute("data-video-index", e), a.trigger("playlistchange"), a.one("loadstart", function() {
+                            a.play(), a.on("timeupdate", l.handlers.triggerEndedTimeUpdate)
+                        })
+                    }
+                }
+            },
+            dispose: function() {
+                n && document.body.contains(n) && l.utilities.destroyContainer(n)
+            }
+        };
+    e.plugins.upNext = l
+}(Volume),
+function(e) {
+    var t = function() {};
+    e.Client = {
+        played: !1,
+        play: t,
+        pause: t,
+        destroy: t,
+        unmute: t,
+        muteButtonAppended: !1,
+        appendUnmuteButton: function() {
+            if (!this.muteButtonAppended) {
+                var e = this,
+                    t = document.createElement("button");
+                t.className = "volume-unmute", t.innerHTML = '<svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 18.2 24.4" style="enable-background:new 0 0 18.2 24.4;" xml:space="preserve"><title>Unmute Audio</title><path d="M15.1,0.7c0-0.4-0.4-0.8-0.8-0.7c-0.2,0-0.4,0.1-0.5,0.2L8.3,5.7H4.8C3.2,5.7,1.9,7,1.9,8.5v7.4c0,0.2,0,0.4,0.1,0.6 L15.1,3.4L15.1,0.7L15.1,0.7z"/><path d="M18,3.9c-0.3-0.3-0.8-0.3-1.1,0l-1.8,1.8l0,0L2.8,18l-2.5,2.5c-0.3,0.3-0.4,0.8-0.1,1.1C0.5,21.9,1,22,1.3,21.7 c0,0,0,0,0.1-0.1l8.2-8.2l5.4-5.4l0,0L18,5C18.3,4.7,18.3,4.2,18,3.9z"/><path d="M8.2,18.8l5.5,5.5c0.3,0.3,0.8,0.3,1.1,0c0.1-0.1,0.2-0.3,0.2-0.5l0.1-13.5l-8.6,8.6L8.2,18.8L8.2,18.8z"/></svg> <span>Tap to Unmute</span>', t.addEventListener("click", function(t) {
+                    t.preventDefault(), e.unmute(), this.remove()
+                }), document.body.appendChild(t), this.muteButtonAppended = !0
+            }
+        },
+        isAutoplay: function() {
+            return this.options.autoplay && window.Volume.YES.test(this.options.autoplay.toString())
+        },
+        isAutoplayWithSound: function() {
+            return this.options.autoplay_with_sound && window.Volume.YES.test(this.options.autoplay_with_sound.toString())
+        },
+        isPausedAutoplay: function() {
+            return this.options.autoplay && "paused" === this.options.autoplay.toString()
+        },
+        playsInline: function() {
+            return this.isAutoplay() || this.isPausedAutoplay() || window.Volume.isAndroid
+        },
+        pauseOtherClients: function() {
+            e.post(e.PAUSE_OTHERS)
+        },
+        markAsViewed: function() {
+            this._viewed || (this._viewed = !0, this.track({
+                action: e.VIEW
+            }))
+        },
+        track: function(t) {
+            if (!t || !t.action) return null;
+            var n = this,
+                i = n.video || {},
+                a = n.options,
+                o = t.action;
+            e.getHost(function(r) {
+                var s = [e.START, e.THIRTY_SECONDS, e.FIRST_QUARTILE, e.SECOND_QUARTILE, e.THIRD_QUARTILE, e.COMPLETE];
+                s.indexOf(t.action) > -1 && (o = t.index > 0 ? e.DISCOVERY + t.action : e.CONTENT + t.action);
+                var l = {
+                    eventCategory: t.category || "video",
+                    eventLabel: [i.title_short, i.id].join(" | "),
+                    eventValue: "number" == typeof t.value ? parseInt(t.value) : void 0,
+                    eventAction: "social" === t.category ? o : [n.type || "volume", o].join(":"),
+                    nonInteraction: o !== e.PLAY
+                };
+                "string" == typeof t.message && (l.eventLabel = t.message, e.log("Track Message", t.message)), void 0 === l.eventValue && (t.index > 0 ? l.eventAction = [n.type || "volume", o, "discovery", "index" + t.index].join(":") : ("play" === o || "view" === o) && (l.eventAction = [n.type || "volume", o, a.tracking || a.placement || "other"].join(":")));
+                var c;
+                if (i.formatted_metadata && (c = n.formatDimensions(i)), e.log("MMM event data", new Date, l), "function" == typeof ga) {
+                    if (c)
+                        for (var d = 0; d < c.length; d++) {
+                            var u = "dimension" + c[d].cdIndex;
+                            ga("set", u, c[d].data)
+                        }
+                    ga("send", "event", l)
+                } else {
+                    if (c)
+                        for (var d = 0; d < c.length; d++) l[c[d].label] = c[d].data;
+                    e.post(e.ANALYTICS, l)
+                }
+            })
+        },
+        timeStart: function() {
+            var e = new Event("playTimeUpdate"),
+                t = this;
+            t.timeInterval = setInterval(function() {
+                t.watchedSeconds++, document.getElementById(t.el.id).dispatchEvent(e)
+            }, 1e3)
+        },
+        timeStop: function() {
+            var e = this;
+            clearInterval(e.timeInterval)
+        },
+        mark: function(e) {
+            this._m = this._m || {}, this._m[e] || (this._m[e] = Date.now())
+        },
+        trackTimeSinceMark: function(e, t) {
+            if (this._m[t]) {
+                var n = Math.floor(Date.now() - this._m[t]);
+                1e5 > n && this.track({
+                    action: e,
+                    value: n
+                })
+            }
+        },
+        formatDimensions: function(e) {
+            var t = e.formatted_metadata;
+            if (!e || !t) return !1;
+            var n = [{
+                cdIndex: 1,
+                data: t.content_id,
+                label: "Content ID"
+            }, {
+                cdIndex: 2,
+                data: "video",
+                label: "Content Type"
+            }, {
+                cdIndex: 4,
+                data: t.credits,
+                label: "Author"
+            }, {
+                cdIndex: 5,
+                data: t.publish_date,
+                label: "Published Date"
+            }, {
+                cdIndex: 10,
+                data: t.tags,
+                label: "Entry Groups"
+            }, {
+                cdIndex: 11,
+                data: t.network,
+                label: "Community"
+            }, {
+                cdIndex: 12,
+                data: t.series,
+                label: "Network"
+            }, {
+                cdIndex: 16,
+                data: t.format,
+                label: "Program"
+            }, {
+                cdIndex: 17,
+                data: t.subformat,
+                label: "Topic"
+            }, {
+                cdIndex: 20,
+                data: t.tags + ";" + t.network + ";" + t.series,
+                label: "All Chorus Categories"
+            }];
+            return n
+        }
+    }
+}(Volume),
+function(e) {
+    function t(t, i, a, o, r) {
+        a = a || {};
+        var s = this;
+        s.el = t, s.video = i, s.mediainfo = {
+            name: i.title_short,
+            id: i.brightcove_uuid,
+            description: i.description_short
+        }, s.ttffTriggered = !1, s.playlist = o, s.playlistConfig = r, s.currentIndex = a.playlist_index, s.source = a.source, s.onceux = null, s.contentPercent = 0, s.options = e.extend({
+            account_id: n,
+            autoplay: !1,
+            startTime: a.start_time || 0
+        }, a);
+        var l = document.location.search.replace(/autoplay/g, "playing");
+        history.replaceState({}, document.title, location.pathname + l), s.mark("brightcoveInitializeStart"), s.buildTag(), s.api() ? s.build() : e.getScript(s.apiUrl(), function() {
+            s.build()
+        })
+    }
+    var n = "4063572901001",
+        i = "0c2129c5-42b8-49e0-aa4c-f560c7bc0ba7";
+    t.prototype = e.extend({}, e.Client, {
+        type: "brightcove",
+        api: function() {
+            return window.videojs
+        },
+        apiUrl: function() {
+            var e = this.options;
+            return "//players.brightcove.net/" + e.account_id + "/" + e.player_id + "_default/index.min.js"
+        },
+        buildTag: function() {
+            var e = this.options,
+                t = this.video,
+                n = ["video-js"];
+            t.provider_class && n.push(t.provider_class), "true" === e.hideAdOverlay && n.push("hide-ad-overlay"), "true" === e.hideAdCountdown && n.push("hide-ad-countdown");
+            var i = document.createElement("video");
+            i.id = "brightcove_" + t.id, i.className = n.join(" "), i.setAttribute("data-player", e.player_id), i.setAttribute("data-account", e.account_id), i.setAttribute("data-embed", "default"), this.playsInline() && i.setAttribute("playsinline", !0), this.isAutoplay() && i.setAttribute("autoplay", !0), this.el.appendChild(i)
+        },
+        build: function() {
+            if (!this.player) {
+                var t = this,
+                    n = t.options,
+                    i = t.video,
+                    a = t.api();
+                a("brightcove_" + i.id).ready(function() {
+                    var a = this;
+                    t.player = a, a.mediainfo = t.mediainfo, t.onceux = t.player.onceux, t.utilities.setAutoplay.call(t);
+                    var o = t.getEmbedCode(i, n).url;
+                    t.plugins.social.call(t, o, n), t.plugins.upNext.call(t, o), o.indexOf("onceux.unicornmedia.com") >= 0 && a.onceux ? (e.log("Once URL", o), a.onceux({
+                        metadataUri: o
+                    })) : (e.log("Src URL", o), a.src({
+                        src: o
+                    })), t.plugins.comscore.call(t), a.one("loadedmetadata", t.handlers.trackLoadTime.bind(t)), a.one("loadstart", function() {
+                        a.one("onceux-linearad-start", t.handlers.ads.start.bind(t)), a.one("onceux-linearad-firstQuartile", t.handlers.ads.firstQuartile.bind(t)), a.one("onceux-linearad-midpoint", t.handlers.ads.midpoint.bind(t)), a.one("onceux-linearad-thirdQuartile", t.handlers.ads.thirdQuartile.bind(t)), a.one("onceux-linearad-complete", t.handlers.ads.complete.bind(t)), a.one("firstplay", t.handlers.trackTtff.bind(t)), a.on("play", t.handlers.onPlay.bind(t)), a.on("pause", t.handlers.onPause.bind(t)), a.on("destroy", t.handlers.onDestroy.bind(t)), a.on("error", t.handlers.onError.bind(t)), a.on("ended", t.handlers.onEnded.bind(t)), a.on("timeupdate", t.handlers.trackQuartiles.bind(t))
+                    }), a.on("playlistchange", function() {
+                        t.currentIndex = t.player.el().getAttribute("data-video-index") || 0, t.video = t.playlist[t.currentIndex], a.off("play", t.handlers.onPlay), a.off("pause", t.handlers.onPause), a.off("destroy", t.handlers.onDestroy), a.off("error", t.handlers.onError), a.off("ended", t.handlers.onEnded), a.off("discoveryEnded", t.handlers.onEnded), a.off("timeupdate", t.handlers.trackQuartiles), a.on("play", t.handlers.onPlay.bind(t)), a.on("pause", t.handlers.onPause.bind(t)), a.on("destroy", t.handlers.onDestroy.bind(t)), a.on("error", t.handlers.onError.bind(t)), a.on("discoveryEnded", t.handlers.onEnded.bind(t)), a.on("timeupdate", t.handlers.trackQuartiles.bind(t));
+                        var e = t.getEmbedCode(t.video, n).url;
+                        t.plugins.social.call(t, e, n), t.plugins.comscore.call(t)
+                    })
+                })
+            }
+        },
+        getEmbedCode: function(t, n) {
+            if (t.brightcove_application_id && n.deliveryType && n.fileType && n.extension) {
+                var a = ["https://onceux.unicornmedia.com/now/ads/vmap", n.deliveryType, n.fileType, i, t.brightcove_application_id, t.brightcove_uuid, "content." + n.extension],
+                    o = [];
+                return t.brightcove_query_params && o.push(t.brightcove_query_params.replace(/^[\?&]/, "")), n.umoprofiles && o.push("umoprofiles=" + n.umoprofiles), e.hostUrl() && (o.push("UMPTPARAMurl=" + encodeURIComponent(e.hostUrl())), o.push("UMPTPARAMdescription_url=" + encodeURIComponent(e.hostUrl()))), {
+                    baseUrl: a,
+                    queryString: "?" + o.join("&"),
+                    url: a.join("/") + "?" + o.join("&")
+                }
+            }
+            return t.brightcove_id
+        },
+        isAd: function() {
+            return !!(this.player && this.player.onceux && this.player.onceux.timeline && this.player.onceux.timeline.pathAtAbsoluteTime && this.player.currentTime() && this.player.onceux.timeline.pathAtAbsoluteTime(this.player.currentTime()) && this.player.onceux.timeline.pathAtAbsoluteTime(this.player.currentTime()).linearAd)
+        },
+        percentCompletion: function() {
+            return this.player && this.player.onceux ? this.player.onceux.currentTime() / this.player.onceux.duration() * 100 : 0
+        },
+        play: function() {
+            this.player && this.player.play()
+        },
+        pause: function() {
+            this.player && this.player.pause()
+        },
+        destroy: function() {
+            this.player && this.player.dispose()
+        },
+        unmute: function() {
+            this.player && this.player.muted(!1)
+        },
+        plugins: {
+            social: function(t, n) {
+                var i = this,
+                    a = i.video;
+                try {
+                    if ("function" == typeof i.player.social && "true" == n.enableSocialSharing) {
+                        var o, r = null,
+                            s = a.embed_uri ? location.protocol + "//" + location.host + a.embed_uri : document.location.href;
+                        o = 0 === i.currentIndex && s.split("?")[0] != window.parent.location.href.split("?")[0] ? document.referrer : s, o = o.split("?")[0] + "?utm_campaign=vox&utm_content=video&utm_medium=social&utm_source=social", i.player.social({
+                            title: a.title_short,
+                            description: a.description_short,
+                            displayAfterVideo: !1,
+                            url: o,
+                            deeplinking: !1,
+                            hasDock: !0,
+                            services: {
+                                facebook: !0,
+                                twitter: !0,
+                                pinterest: !0,
+                                tumblr: !0,
+                                linkedin: !0,
+                                google: !0
+                            }
+                        }), i.player.one("play", function() {
+                            r = i.player.onceux && t.indexOf("onceux.unicornmedia.com") >= 0 && i.player.onceux.controlBar ? i.player.onceux.controlBar : i.player.controlBar, i.player.socialButton && i.player.socialButton.el() && r.el() && (r.el().appendChild(i.player.socialButton.el()), i.player.socialButton.on("click", function() {
+                                i.player.socialOverlay.open()
+                            })), i.player.socialOverlay.on("click", function(t) {
+                                /vjs-social-share-link/.test(t.target.className) && t.target.title && i.track({
+                                    category: "social",
+                                    action: "share:video:" + e.device + ":" + e.placement,
+                                    value: 0,
+                                    message: "share:" + t.target.title.toLowerCase() + ":video:" + e.device
+                                })
+                            })
+                        })
+                    }
+                } catch (l) {
+                    e.log(l), i.track({
+                        action: e.ERROR,
+                        value: 0,
+                        message: "Exception on social call" + l
+                    })
+                }
+            },
+            comscore: function() {
+                var t = this;
+                try {
+                    if ("function" == typeof t.player.comscore && t.video.comscore) {
+                        var n = t.video.comscore,
+                            i = t.video.title_short;
+                        t.player.comscore({
+                            c2: n.c2,
+                            labelmapping: 'c3="' + n.c3 + '",c4="*null",c6="' + i + '",ns_st_pr="' + i + '",ns_st_ep="' + i + '"'
+                        })
+                    } else e.log("NO COMSCORE")
+                } catch (a) {
+                    t.track({
+                        action: e.ERROR,
+                        value: 0,
+                        message: "Exception on comscore call" + a.message
+                    })
+                }
+            },
+            upNext: function(t) {
+                var n = this,
+                    i = n.options;
+                if (e.plugins.upNext && n.playlist && n.playlist.length > 0 && n.video.discovery_enabled) {
+                    try {
+                        for (var a = 0; a < n.playlist.length; a++) {
+                            var o = n.getEmbedCode(n.playlist[a], i);
+                            n.playlist[a].brightcove_query_params = o.queryString;
+                            for (var r = 0; r < n.playlist[a].sources.length; r++) n.playlist[a].sources[r].src = o.url
+                        }
+                    } catch (s) {
+                        n.track({
+                            action: e.ERROR,
+                            value: 0,
+                            message: "Problem adjusting playlists " + s.message
+                        })
+                    }
+                    var l = n.playlistConfig;
+                    l.default_image = "https://volume-assets.voxmedia.com/production/upnext/default-thumb.jpg", l.sprite_path = "https://volume-assets.voxmedia.com/production/upnext/sprite.svg";
+                    try {
+                        e.plugins.upNext.initialize(n.player, n.playlist, l, n.currentIndex, n.onceux)
+                    } catch (s) {
+                        n.track({
+                            action: e.ERROR,
+                            value: 0,
+                            message: "Problem initializing UpNext"
+                        })
+                    }
+                }
+            }
+        },
+        utilities: {
+            setAutoplay: function() {
+                var e = this;
+                this.isAutoplay() || this.isPausedAutoplay() ? (this.player.controls(!0), this.isAutoplayWithSound() || this.player.muted(!0), this.isAutoplay() && "desktop" === window.Volume.device && (this.player.autoplay(!0), e.player.play()), (window.Volume.isMobileDevice() || window.Volume.isTabletDevice()) && (this.video.brightcove_thumbnail ? this.player.poster(this.video.brightcove_thumbnail) : this.player.poster("https://volume-assets.voxmedia.com/static-images/default-thumb.jpg"), this.isAutoplay() && this.player.play())) : (this.player.addClass("vjs-autoplay-disabled"), this.video.brightcove_thumbnail ? this.player.poster(this.video.brightcove_thumbnail) : this.player.poster("https://volume-assets.voxmedia.com/static-images/default-thumb.jpg"))
+            },
+            auditOnceEvents: function() {
+                e.log("OnceUX", "Auditing Once events...");
+                for (var t = this.player, n = ["onceux-linearad-start", "onceux-linearad-impression", "onceux-linearad-firstQuartile", "onceux-linearad-midpoint", "onceux-linearad-thirdQuartile", "onceux-linearad-complete", "onceux-adroll-start", "onceux-adroll-complete", "onceux-ads-complete", "onceux-linearad-skipped", "onceux-linearad-mute", "onceux-linearad-unmute", "onceux-linearad-pause", "onceux-linearad-resume", "onceux-companionad-creativeView"], i = 0; i < n.length; i++) t.on(n[i], function(t) {
+                    e.log("OnceUX", t)
+                })
+            }
+        },
+        handlers: {
+            trackLoadTime: function() {
+                this.currentIndex < 1 && (this.trackTimeSinceMark("loadtime", "brightcoveInitializeStart"), this.options.startTime > 0 && this.player.currentTime(this.options.startTime))
+            },
+            trackTtff: function() {
+                function t() {
+                    !n.ttffTriggered && n.currentIndex < 1 && n.player.currentTime() > 0 && (n.player.off("timeupdate", t), n.trackTimeSinceMark("ttff", "playbackRequest"), n.ttffTriggered = !0, console.log("player_ttff"))
+
+                }
+                var n = this;
+                n.pauseOtherClients(), n.played = !0, n.watchedSeconds = 0, n.mark("playbackRequest"), n.playTriggered || (n.track({
+                    action: e.PLAY,
+                    index: n.currentIndex
+                }), n.playTriggered = !0), n.player.on("timeupdate", t)
+            },
+            onPlay: function() {
+                window.Volume.isAndroid && (this.player.supportsFullScreen() || this.player.enterFullWindow()), this.isAd() || this.thirtySecondPlay || this.playing || (this.timeStart(), this.playing = !0), (this.isAutoplay() || this.isPausedAutoplay()) && !this.isAutoplayWithSound() && this.player.muted() && this.appendUnmuteButton()
+            },
+            onPause: function() {
+                this.timeStop(), this.playing = !1
+            },
+            onDestroy: function() {
+                this.timeStop()
+            },
+            ads: {
+                start: function() {
+                    this.track({
+                        action: e.AD + e.START
+                    })
+                },
+                firstQuartile: function() {
+                    this.track({
+                        action: e.AD + e.FIRST_QUARTILE
+                    })
+                },
+                midpoint: function() {
+                    this.track({
+                        action: e.AD + e.SECOND_QUARTILE
+                    })
+                },
+                thirdQuartile: function() {
+                    this.track({
+                        action: e.AD + e.THIRD_QUARTILE
+                    })
+                },
+                complete: function() {
+                    this.track({
+                        action: e.AD + e.COMPLETE
+                    })
+                }
+            },
+            onError: function() {
+                "function" == typeof this.player.error ? this.track({
+                    action: e.ERROR,
+                    value: this.player.error().code,
+                    message: this.player.error().message
+                }) : this.track({
+                    action: e.ERROR,
+                    value: 0,
+                    message: "unknown error handler error"
+                })
+            },
+            onEnded: function() {
+                this.player.supportsFullScreen() ? this.player.exitFullscreen() : this.player.exitFullWindow(), this.track({
+                    action: e.COMPLETE,
+                    value: .25 * this.player.onceux.duration(),
+                    index: this.currentIndex
+                }), this.timeStop(), this.playTriggered = !1, this.thirtySecondPlay = !1, this.watchedSeconds = 0
+            },
+            trackQuartiles: function() {
+                var t = this;
+                if (!t.isAd()) {
+                    var n = t.player.onceux.duration(),
+                        i = .25 * n,
+                        a = t.percentCompletion();
+                    if (0 == t.contentPercent && 100 == a) return;
+                    t.thirtySecondPlay || t.watchedSeconds >= 30 && (t.track({
+                        action: e.THIRTY_SECONDS,
+                        value: 30,
+                        index: t.currentIndex
+                    }), t.thirtySecondPlay = !0, t.timeStop()), a > 0 && 0 == t.contentPercent && t.track({
+                        action: e.START,
+                        value: n,
+                        index: t.currentIndex
+                    }), a >= 25 && t.contentPercent < 25 && t.track({
+                        action: e.FIRST_QUARTILE,
+                        value: i,
+                        index: t.currentIndex
+                    }), a >= 50 && t.contentPercent < 50 && t.track({
+                        action: e.SECOND_QUARTILE,
+                        value: i,
+                        index: t.currentIndex
+                    }), a >= 75 && t.contentPercent < 75 && t.track({
+                        action: e.THIRD_QUARTILE,
+                        value: i,
+                        index: t.currentIndex
+                    }), t.contentPercent = a
+                }
+            }
+        }
+    }), t.validate = function(e, t) {
+        return e.brightcove_id && t.player_id
+    }, e.clients.brightcove = t
+}(Volume),
+function(e) {
+    function t(t, i, a) {
+        a = a || {}, this.el = t, this.video = i, this.options = e.extend({
+            autoplay: !1,
+            controls: 1,
+            modestbranding: 1,
+            rel: 0,
+            showInfo: 0,
+            timedEvents: {},
+            start: a.start_time || 0
+        }, a), this.mark("youtubeInitializeStart"), this.api() ? this.build() : (window.onYouTubeIframeAPIReady || (window.onYouTubeIframeAPIReady = function() {
+            n.forEach(function(e) {
+                e.build()
+            })
+        }, e.getScript("//www.youtube.com/iframe_api")), n.push(this))
+    }
+    var n = [];
+    t.prototype = e.extend({}, e.Client, {
+        type: "youtube",
+        api: function() {
+            return window.YT
+        },
+        build: function() {
+            if (!this.player) {
+                var t = this.api(),
+                    n = this.video,
+                    i = this;
+                this.player = new t.Player(this.el.id, {
+                    videoId: n.youtube_id || n.provider_video_id,
+                    playerVars: this.options,
+                    events: {
+                        onReady: function() {
+                            i.trackTimeSinceMark("loadtime", "youtubeInitializeStart");
+                            var e = i.player.getDuration(),
+                                t = Math.floor(.25 * e);
+                            i.quartileComplete = 0, i.watchedSeconds = 0, document.getElementById(i.el.id).addEventListener("playTimeUpdate", function() {
+                                i.quartileTracker(t, i.quartileComplete), i.thirtySecondTrack(i.watchedSeconds)
+                            })
+                        },
+                        onStateChange: function(n) {
+                            if (n.data === t.PlayerState.PLAYING) {
+                                i.pauseOtherClients();
+                                var a = i.player.getDuration();
+                                i.timeStart(), i.played || (i.played = !0, i.track({
+                                    action: e.START,
+                                    value: a
+                                }), i.track({
+                                    action: e.PLAY
+                                }))
+                            } else n.data === t.PlayerState.ENDED ? (i.timeStop(), i.track({
+                                action: e.COMPLETE,
+                                value: Math.floor(.25 * i.player.getDuration())
+                            })) : n.data === t.PlayerState.PAUSED && i.timeStop()
+                        }
+                    },
+                    width: "100%",
+                    height: "100%"
+                })
+            }
+        },
+        quartileTracker: function(t, n) {
+            var i = this,
+                a = i.percentCompletion();
+            a >= 75 && 2 == n ? (i.track({
+                action: e.THIRD_QUARTILE,
+                value: t
+            }), i.quartileComplete = 3, i.timeStop()) : a >= 50 && 1 == n ? (i.track({
+                action: e.SECOND_QUARTILE,
+                value: t
+            }), i.quartileComplete = 2) : a >= 25 && 0 == n && (i.track({
+                action: e.FIRST_QUARTILE,
+                value: t
+            }), i.quartileComplete = 1)
+        },
+        thirtySecondTrack: function(t) {
+            var n = this;
+            t >= 30 && !n.thirtySecondPlay && (n.track({
+                action: e.THIRTY_SECONDS,
+                value: 30
+            }), n.thirtySecondPlay = !0)
+        },
+        percentCompletion: function() {
+            return this.player ? this.player.getCurrentTime() / this.player.getDuration() * 100 : 0
+        },
+        play: function() {
+            this.player && this.player.playVideo()
+        },
+        pause: function() {
+            this.player && this.player.stopVideo()
+        },
+        destroy: function() {
+            this.player && this.player.destroy()
+        },
+        unmute: function() {
+            this.player && this.player.unMute()
+        }
+    }), t.validate = function(e, t) {
+        return !!e.youtube_id
+    }, e.clients.youtube = t
+}(Volume);

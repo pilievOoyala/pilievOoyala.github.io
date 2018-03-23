@@ -1,0 +1,2803 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript">
+    //start timers
+    console.log("PLAYER_LOAD_TIME");
+    console.log("PLAYER_TIME_TO_FIRST_FRAME");
+  </script>
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"a690b21e9f","applicationID":"599479","transactionName":"NV0GYUFWCEUDBkNQDAwXKWNwGCRaDQJ0Vg0WSgtZX1IUGSwAQEowFlcWTA==","queueTime":0,"applicationTime":21,"agent":"","atts":""}</script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQUFVl5UGwYJXVVVDg=="};window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){var o=n[e]={exports:{}};t[e][0].call(o.exports,function(n){var o=t[e][1][n];return r(o||n)},o,o.exports)}return n[e].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<e.length;o++)r(e[o]);return r}({1:[function(t,n,e){function r(t){try{s.console&&console.log(t)}catch(n){}}var o,i=t("ee"),a=t(15),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,o.indexOf("dev")!==-1&&(s.dev=!0),o.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,n,e){r(e.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,n){return t}).join(", ")))},{}],2:[function(t,n,e){function r(t,n,e,r,s){try{p?p-=1:o(s||new UncaughtException(t,n,e),!0)}catch(f){try{i("ierr",[f,c.now(),!0])}catch(d){}}return"function"==typeof u&&u.apply(this,a(arguments))}function UncaughtException(t,n,e){this.message=t||"Uncaught error with no additional information",this.sourceURL=n,this.line=e}function o(t,n){var e=n?null:c.now();i("err",[t,e])}var i=t("handle"),a=t(16),s=t("ee"),c=t("loader"),f=t("gos"),u=window.onerror,d=!1,l="nr@seenError",p=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(h){"stack"in h&&(t(8),t(7),"addEventListener"in window&&t(5),c.xhrWrappable&&t(9),d=!0)}s.on("fn-start",function(t,n,e){d&&(p+=1)}),s.on("fn-err",function(t,n,e){d&&!e[l]&&(f(e,l,function(){return!0}),this.thrown=!0,o(e))}),s.on("fn-end",function(){d&&!this.thrown&&p>0&&(p-=1)}),s.on("internal-error",function(t){i("ierr",[t,c.now(),!0])})},{}],3:[function(t,n,e){t("loader").features.ins=!0},{}],4:[function(t,n,e){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),s=t(7),c="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState",g=t("loader");g.features.stn=!0,t(6);var b=NREUM.o.EV;o.on(m,function(t,n){var e=t[0];e instanceof b&&(this.bstStart=g.now())}),o.on(w,function(t,n){var e=t[0];e instanceof b&&i("bst",[e,n,this.bstStart,g.now()])}),a.on(m,function(t,n,e){this.bstStart=g.now(),this.bstType=e}),a.on(w,function(t,n){i(v,[n,this.bstStart,g.now(),this.bstType])}),s.on(m,function(){this.bstStart=g.now()}),s.on(w,function(t,n){i(v,[n,this.bstStart,g.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=g.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+c]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+c]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+c]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,n,e){function r(t){for(var n=t;n&&!n.hasOwnProperty(u);)n=Object.getPrototypeOf(n);n&&o(n)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,n){return t[1]}var a=t("ee").get("events"),s=t(18)(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";n.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,n){var e=t[1],r=c(e,"nr@wrapped",function(){function t(){if("function"==typeof e.handleEvent)return e.handleEvent.apply(e,arguments)}var n={object:t,"function":e}[typeof e];return n?s(n,"fn-",null,n.name||"anonymous"):e});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,n,e){var r=t("ee").get("history"),o=t(18)(r);n.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,n,e){var r=t("ee").get("raf"),o=t(18)(r),i="equestAnimationFrame";n.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,n,e){function r(t,n,e){t[0]=a(t[0],"fn-",null,e)}function o(t,n,e){this.method=e,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,e)}var i=t("ee").get("timer"),a=t(18)(i),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";n.exports=i,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(c+u,r),i.on(s+u,o)},{}],9:[function(t,n,e){function r(t,n){d.inPlace(n,["onreadystatechange"],"fn-",s)}function o(){var t=this,n=u.context(t);t.readyState>3&&!n.resolved&&(n.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,y,"fn-",s)}function i(t){g.push(t),h&&(x?x.then(a):w?w(a):(E=-E,O.data=E))}function a(){for(var t=0;t<g.length;t++)r([],g[t]);g.length&&(g=[])}function s(t,n){return n}function c(t,n){for(var e in t)n[e]=t[e];return n}t(5);var f=t("ee"),u=f.get("xhr"),d=t(18)(u),l=NREUM.o,p=l.XHR,h=l.MO,m=l.PR,w=l.SI,v="readystatechange",y=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],g=[];n.exports=u;var b=window.XMLHttpRequest=function(t){var n=new p(t);try{u.emit("new-xhr",[n],n),n.addEventListener(v,o,!1)}catch(e){try{u.emit("internal-error",[e])}catch(r){}}return n};if(c(p,b),b.prototype=p.prototype,d.inPlace(b.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,n){r(t,n),i(n)}),u.on("open-xhr-start",r),h){var x=m&&m.resolve();if(!w&&!m){var E=1,O=document.createTextNode(E);new h(a).observe(O,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===v||a()})},{}],10:[function(t,n,e){function r(t){var n=this.params,e=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!n.aborted){if(e.duration=a.now()-this.startTime,4===t.readyState){n.status=t.status;var i=o(t,this.lastSize);if(i&&(e.rxSize=i),this.sameOrigin){var c=t.getResponseHeader("X-NewRelic-App-Data");c&&(n.cat=c.split(", ").pop())}}else n.status=0;e.cbTime=this.cbTime,f.emit("xhr-done",[t],t),s("xhr",[n,e,this.startTime])}}}function o(t,n){var e=t.responseType;if("json"===e&&null!==n)return n;var r="arraybuffer"===e||"blob"===e||"json"===e?t.response:t.responseText;return h(r)}function i(t,n){var e=c(n),r=t.params;r.host=e.hostname+":"+e.port,r.pathname=e.pathname,t.sameOrigin=e.sameOrigin}var a=t("loader");if(a.xhrWrappable){var s=t("handle"),c=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var n=this;n.totalCbs=0,n.called=0,n.cbTime=0,n.end=r,n.ended=!1,n.xhrGuids={},n.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){n.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,n){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&n.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,n){var e=this.metrics,r=t[0],o=this;if(e&&r){var i=h(r);i&&(e.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof n.onload))&&o.end(n)}catch(e){try{f.emit("internal-error",[e])}catch(r){}}};for(var s=0;s<d;s++)n.addEventListener(u[s],this.listener,!1)}),f.on("xhr-cb-time",function(t,n,e){this.cbTime+=t,n?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof e.onload||this.end(e)}),f.on("xhr-load-added",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&!this.xhrGuids[e]&&(this.xhrGuids[e]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&this.xhrGuids[e]&&(delete this.xhrGuids[e],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],n)}),f.on("removeEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],n)}),f.on("fn-start",function(t,n,e){n instanceof m&&("onload"===e&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),f.on("fn-end",function(t,n){this.xhrCbStart&&f.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,n],n)})}},{}],11:[function(t,n,e){n.exports=function(t){var n=document.createElement("a"),e=window.location,r={};n.href=t,r.port=n.port;var o=n.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=n.hostname||e.hostname,r.pathname=n.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!n.protocol||":"===n.protocol||n.protocol===e.protocol,a=n.hostname===document.domain&&n.port===e.port;return r.sameOrigin=i&&(!n.hostname||a),r}},{}],12:[function(t,n,e){function r(){}function o(t,n,e){return function(){return i(t,[f.now()].concat(s(arguments)),n?null:this,e),n?void 0:this}}var i=t("handle"),a=t(15),s=t(16),c=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",p=l+"ixn-";a(d,function(t,n){u[n]=o(l+n,!0,"api")}),u.addPageAction=o(l+"addPageAction",!0),u.setCurrentRouteName=o(l+"routeName",!0),n.exports=newrelic,u.interaction=function(){return(new r).get()};var h=r.prototype={createTracer:function(t,n){var e={},r=this,o="function"==typeof n;return i(p+"tracer",[f.now(),t,e],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],e),o)try{return n.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],e),t}finally{c.emit("fn-end",[f.now()],e)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,n){h[n]=o(p+n)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now()])}},{}],13:[function(t,n,e){n.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(n){return}}}},{}],14:[function(t,n,e){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),n.exports=r},{}],15:[function(t,n,e){function r(t,n){var e=[],r="",i=0;for(r in t)o.call(t,r)&&(e[i]=n(r,t[r]),i+=1);return e}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],16:[function(t,n,e){function r(t,n,e){n||(n=0),"undefined"==typeof e&&(e=t?t.length:0);for(var r=-1,o=e-n||0,i=Array(o<0?0:o);++r<o;)i[r]=t[n+r];return i}n.exports=r},{}],17:[function(t,n,e){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],18:[function(t,n,e){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;n.exports=function(t,n){function e(t,n,e,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof e?e(r,a):e||{}}catch(f){l([f,"",[r,a,o],s])}u(n+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(d){throw u(n+"err",[r,a,d],s),d}finally{u(n+"end",[r,a,c],s)}}return r(t)?t:(n||(n=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function u(e,r,o){if(!c||n){var i=c;c=!0;try{t.emit(e,r,o,n)}catch(a){l([a,e,r,o])}c=i}}function d(t,n){if(Object.defineProperty&&Object.keys)try{var e=Object.keys(t);return e.forEach(function(e){Object.defineProperty(n,e,{get:function(){return t[e]},set:function(n){return t[e]=n,n}})}),n}catch(r){l([r])}for(var o in t)s.call(t,o)&&(n[o]=t[o]);return n}function l(n){try{t.emit("internal-error",n)}catch(e){}}return t||(t=o),e.inPlace=f,e.flag=a,e}},{}],ee:[function(t,n,e){function r(){}function o(t){function n(t){return t&&t instanceof r?t:t?c(t,s,i):i()}function e(e,r,o,i){if(!l.aborted||i){t&&t(e,r,o);for(var a=n(o),s=h(e),c=s.length,f=0;f<c;f++)s[f].apply(a,r);var d=u[y[e]];return d&&d.push([g,e,r,a]),a}}function p(t,n){v[t]=h(t).concat(n)}function h(t){return v[t]||[]}function m(t){return d[t]=d[t]||o(e)}function w(t,n){f(t,function(t,e){n=n||"feature",y[e]=n,n in u||(u[n]=[])})}var v={},y={},g={on:p,emit:e,get:m,listeners:h,context:n,buffer:w,abort:a,aborted:!1};return g}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var s="nr@context",c=t("gos"),f=t(15),u={},d={},l=n.exports=o();l.backlog=u},{}],gos:[function(t,n,e){function r(t,n,e){if(o.call(t,n))return t[n];var r=e();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(t,n,e){function r(t,n,e,r){o.buffer([t],r),o.emit(t,n,e)}var o=t("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(t,n,e){function r(t){var n=typeof t;return!t||"object"!==n&&"function"!==n?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");n.exports=r},{}],loader:[function(t,n,e){function r(){if(!x++){var t=b.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&n))return u.abort();f(y,function(n,e){t[n]||(t[n]=e)}),c("mark",["onload",a()+b.offset],null,"api");var e=l.createElement("script");e.src="https://"+t.agent,n.parentNode.insertBefore(e,n)}}function o(){"complete"===l.readyState&&i()}function i(){c("mark",["domContent",a()+b.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(s=Math.max((new Date).getTime(),s))-b.offset}var s=(new Date).getTime(),c=t("handle"),f=t(15),u=t("ee"),d=window,l=d.document,p="addEventListener",h="attachEvent",m=d.XMLHttpRequest,w=m&&m.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:m,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},g=m&&w&&w[p]&&!/CriOS/.test(navigator.userAgent),b=n.exports={offset:s,now:a,origin:v,features:{},xhrWrappable:g};t(12),l[p]?(l[p]("DOMContentLoaded",i,!1),d[p]("load",r,!1)):(l[h]("onreadystatechange",o),d[h]("onload",r)),c("mark",["firstbyte",s],null,"api");var x=0,E=t(17)},{}]},{},["loader",2,10,4,3]);</script>
+
+<title>Extraordinary warmth envelops Arctic as Polar Vortex dislodges cold air to US, Europe</title><meta property="og:title" content="Extraordinary warmth envelops Arctic as Polar Vortex dislodges cold air to US, Europe"><meta name="twitter:title" content="Extraordinary warmth envelops Arctic as Polar Vortex dislodges cold air to US, Europe"><meta name="description" content="In February, a split in the Polar Vortex allowed cold air to plunge southward into Europe and parts of the United States as warm air surged northward to the North Pole."><meta property="og:description" content="In February, a split in the Polar Vortex allowed cold air to plunge southward into Europe and parts of the United States as warm air surged northward to the North Pole."><meta name="twitter:description" content="In February, a split in the Polar Vortex allowed cold air to plunge southward into Europe and parts of the United States as warm air surged northward to the North Pole."><link rel="canonical" href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292"><meta property="og:url" content="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292"><meta name="twitter:url" content="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292"><meta property="og:type" content="website"><meta property="og:image" content="https://accuweather.brightspotcdn.com/47/9a/b0e498394694926aad65bafbb438/static-north-pole-thaw.jpg"><meta name="twitter:image:src" content="https://accuweather.brightspotcdn.com/47/9a/b0e498394694926aad65bafbb438/static-north-pole-thaw.jpg"><meta property="fb:app_id" content="132437483467956">
+
+    <meta name="viewport" content="width=988" />
+    <link rel="stylesheet" href="https://vortex.accuweather.com/adc2010/stylesheets/slate.min-20180213-1001.css" type="text/css" media="all" />
+    <link rel="shortcut icon" href="https://vortex.accuweather.com/adc2010/images/favicons/awx-2013-master.ico" />
+    <link href='https://www.googletagservices.com' rel='preconnect' crossorigin>
+    <link href='https://securepubads.g.doubleclick.net' rel='preconnect' crossorigin>
+    <link href='https://www.googletagmanager.com' rel='preconnect' crossorigin>
+    <link href='https://sirocco.accuweather.com' rel='preconnect' crossorigin>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="msapplication-config" content="none" />
+
+        <style type="text/css">
+.flag-US { background-image: url(https://vortex.accuweather.com/adc2010/images/flags/US.png) !important;}
+.flag-CN { background-image: url(https://vortex.accuweather.com/adc2010/images/flags/CN.png) !important;}
+.flag-GB { background-image: url(https://vortex.accuweather.com/adc2010/images/flags/GB.png) !important;}
+         </style>
+
+
+
+    <script type="text/javascript">
+
+var trafficFlag = false;
+
+    //all things being equal...
+    var amobeeParams = {
+        p:{
+            version:"",
+            adsource:"",
+            guid:"",
+            ira:"",
+            skymotion:"",
+            tzo:"",
+            lat:"",
+            long:"",
+            LotameID:"",
+            kw:"",
+            adtestkey:""
+        }
+    }
+
+    //ATP Config
+    var atp_config = {
+        AdPlatform: "GPT",
+        IsDebug: false,
+        PrebidTimeout: 300,
+        TargetingOverrides:
+        {
+        },
+        Criteo :
+        {
+            crtg_nid:"3852",
+            crtg_cookiename:"crtg_accwea",
+            crtg_varname:"crtg_content"
+        },
+        ForecastDays: 2,        //number of forecast days to send
+        //TargetingIndicies: ["migraine", "flu","cold","dust","asthma","pollen"]
+        //TargetingIndicies: []   //no indicies
+        TargetingIndicies: undefined //all indicies
+        //TargetingIndicies: ["cold", "flu"] // cold and flu indicies
+    }
+    var TILE_SIZES = {
+        ATFPENCIL: [[980, 30]],
+        ATF728: [[728, 90], [970, 250], [750, 100], [750, 200], [750, 300], [930, 180], [950, 90], [980, 90], [980, 120], [970, 90], [960, 90]],
+        ATF300: [[300, 250], [336, 280], [300, 1050], [250, 360], [240, 400]],
+        ATF300_NONPROD: [[300, 600]],
+        ATF160: [[120, 60], [120, 240]],
+        BTF160: [[120, 60], [120, 240]],
+        BTF300: [[300, 250], [300, 251], [250, 360], [240, 400], [300,600], [336,280]],
+        BTF300_NONPROD: [[300, 601]],
+        BTF728: [[728, 90], [728, 91], [750, 100], [950, 90], [980, 90], [970, 90], [960, 90]],
+        ATFVIDEOCOMP300: [[300, 250]],
+        ATF_TRR:[[160, 600], [120, 600]],
+        BTF_TRR:[[160, 600]]
+    };
+    var pageWx = {
+        nwsalrt: 'TODO',
+        alerts: { source: 'us', category: 'flood', typeid: 'us24' },
+        isday: '0',
+        lfs: { day: '', category: '', severity: '' },
+        hdln: '',
+        ut: '',
+cu: null,
+fc: null,
+        ix: {arthritis:'3',asthma:'2',bbq:'2',cold:'3',flu:'5',lawnmowing:'1',migraine:'1',outdoor:'2',schoolclosing:'1',sinus:'2',soil:'2',field:'1',beach:'1',biking:'4',concert:'',construction:'3',composting:'2',dust:'2',fishing:'4',fueleconomy:'4',golf:'3',heart:'4',hiking:'3',hvac:'1',mosq:'1',sailing:'4',running:'4',schoolbus:'4',skiing:'1',star:'1',frizz:'2',pollen:'1',uvindex:'2',hunting:'3', driving:'2', travel:'5', airq:'2', pgrass:'1', pmold:'1', pweed:'1', ptree:'1' }
+    };
+</script>
+
+
+
+
+
+
+
+
+    <!--[if gte IE 9]>
+    <meta content="AccuWeather.com" name="application-name" />
+    <meta content="width=1024;height=768" name="msapplication-window" />
+    <meta content="https://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727" name="msapplication-starturl" />
+    <meta name="msapplication-navbutton-color" content="#637ebe" />
+    <meta content="New York Weather" name="msapplication-tooltip" />
+    <meta content="name=New York Hourly;action-uri=https://www.accuweather.com/en/us/new-york-ny/10007/hourly-weather-forecast/349727;icon-uri=https://vortex.accuweather.com/adc2010/images/favicons/hourly_master.ico" name="msapplication-task" />
+    <meta content="name=New York Weekend;action-uri=https://www.accuweather.com/en/us/new-york-ny/10007/weekend-weather/349727;icon-uri=https://vortex.accuweather.com/adc2010/images/favicons/weekend_master.ico" name="msapplication-task" />
+    <meta content="name=New York Extended;action-uri=https://www.accuweather.com/en/us/new-york-ny/10007/daily-weather-forecast/349727;icon-uri=https://vortex.accuweather.com/adc2010/images/favicons/extended_master.ico" name="msapplication-task" />
+    <meta content="name=New York Calendar;action-uri=https://www.accuweather.com/en/us/new-york-ny/10007/month/349727;icon-uri=https://vortex.accuweather.com/adc2010/images/favicons/month_master.ico" name="msapplication-task" />
+    <meta name="msapplication-TileImage" content="https://vortex.accuweather.com/adc2010/images/favicons/windows8_tile_144x144.png"/>
+    <meta name="msapplication-TileColor" content="#006cb1"/>
+    <![endif]-->
+    <script type="text/javascript">
+    //define our user bucket settings from config
+    var userLevelSettings = {
+        engagedUserSessionPageViews: 9,
+        ambassadorSessions: 5,
+        engagedAmbassadorTotalPageViews: 18
+        };
+
+    var bingMapsKey = 'AoznCIbkg0lP0cZOHAPwZJMxL_Qqm9xrHj4T1BzmC2ACRGZLWHyOJIDTSakVRzT7';
+
+    var gaKey = 'UA-20804842-1';
+
+        var awxIsSlateSite = true;
+    </script>
+
+    <script type="text/javascript">
+    var atp_queue = atp_queue ? atp_queue : [];
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+    var apgUserInfoObj = {
+        country: 'US',
+        city: 'New York',
+        state: 'NY',
+        metro: 'NYC',
+        zip: '10007',
+        fcode: 'NYC',
+        partner: 'accuweather',
+        sessionPartner: 'accuweather',
+        referer: '',
+        lang: 'en-us',
+        langid: '1',
+        lat: '40.779',
+        lon: '-73.969',
+        dma: '501',
+        ip: '64.84.82.1',
+        ipHash: '75c4ce39700986be6d13ddf4d74e55a4',
+        ipLocation: '',
+        ipCountry: 'us',
+        bot: false,
+        sessionViews: 2,
+        //visitFlow: '',
+        geo_dma: '807',
+        geo_city: 'Novato',
+        geo_state: 'CA',
+        geo_zip: '94945',
+        geo_country: 'US',
+        gmtOffset: '-5',
+        locationKey: '349727',
+        canonicalLocationKey: '349727',
+        weatherDate:'20180301',
+        callRender:'1'
+    };
+
+
+var aadCustomKeyValuePairs = {};
+</script>
+
+    <script type="text/javascript">
+    var AW_EXP_ID = null;
+    var AW_EXP_VAR = null;
+        var apgConfigObj = {};
+        apgConfigObj.showLifestyle = true;
+        apgConfigObj.showPreviousVisitedLifestyle = true;
+        apgConfigObj.prompts = {};
+    apgConfigObj.useBrightcoveVideoWall = true;
+    apgConfigObj.openBrightCoveVideoWallInNewTab = true;
+    apgConfigObj.useLotame = true;
+
+        var acm_RecentLocationsCarousel= new Array();
+
+acm_RecentLocationsCarousel.push({name:"New York, NY", daypart:'night', href:'/en/us/new-york-ny/10017/weather-forecast/349727', icon:'i-7-l', bg:'s', temp:'56',  realfeel:'54',  text:"Cloudy"});
+acm_RecentLocationsCarousel.push({name:"Miami, FL", daypart:'night', href:'/en/us/miami-fl/33128/weather-forecast/347936', icon:'i-33-l', bg:'cl', temp:'81',  realfeel:'78',  text:"Clear"});
+acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/en/us/los-angeles-ca/90012/weather-forecast/347625', icon:'i-1-l', bg:'su', temp:'61',  realfeel:'63',  text:"Sunny"});
+
+    </script>
+
+            <script type="text/javascript">
+                var acm_InterestLayers = [
+{group:'1.1', name:'Cold & Flu', code:'10302', icon: 'cold-flu', href:'https://www.accuweather.com/en/us/new-york-ny/10007/cold-flu-weather/349727', alarm:[3,4,5], curCategory:'At Risk', curStatusRed:true},
+{group:'1.1', name:'Allergies', code:'10201', icon: 'allergies', href:'https://www.accuweather.com/en/us/new-york-ny/10007/allergies-weather/349727', alarm:[3,4,5], curCategory:'Low', curStatusRed:false},
+{group:'1.1', name:'Respiratory', code:'10301', icon: 'asthma', href:'https://www.accuweather.com/en/us/new-york-ny/10007/asthma-weather/349727', alarm:[3,4,5], curCategory:'Neutral', curStatusRed:false},
+{group:'1.1', name:'Arthritis', code:'10102', icon: 'arthritis', href:'https://www.accuweather.com/en/us/new-york-ny/10007/arthritis-weather/349727', alarm:[3,4,5], curCategory:'At Risk', curStatusRed:true},
+{group:'1.1', name:'Migraine', code:'10101', icon: 'migraine', href:'https://www.accuweather.com/en/us/new-york-ny/10007/migraine-weather/349727', alarm:[3,4,5], curCategory:'Beneficial', curStatusRed:false},
+{group:'1.1', name:'Sinus', code:'10103', icon: 'sinus', href:'https://www.accuweather.com/en/us/new-york-ny/10007/sinus-weather/349727', alarm:[3,4,5], curCategory:'Neutral', curStatusRed:false},
+{group:'1.2', name:'Travel', code:'20501', icon: 'air-travel', href:'https://www.accuweather.com/en/us/new-york-ny/10007/air-travel-weather/349727', alarm:[1], curCategory:'Excellent', curStatusRed:false},
+{group:'1.2', name:'Astronomy', code:'40501', icon: 'astronomy', href:'https://www.accuweather.com/en/us/new-york-ny/10007/astronomy-weather/349727', alarm:[1], curCategory:'Poor', curStatusRed:true},
+{group:'1.2', name:'Events', code:'41001', icon: 'events', href:'https://www.accuweather.com/en/us/new-york-ny/10007/events-weather/349727', alarm:[1], curCategory:'Fair', curStatusRed:false},
+{group:'2.1', name:'Driving', code:'20401', icon: 'driving', href:'https://www.accuweather.com/en/us/new-york-ny/10007/driving-weather/349727', alarm:[1], curCategory:'Fair', curStatusRed:false},
+{group:'2.1', name:'School Day', code:'30401', icon: 'school-day', href:'https://www.accuweather.com/en/us/new-york-ny/10007/school-day-weather/349727', alarm:[1], curCategory:'Very Good', curStatusRed:false},
+{group:'2.1', name:'Hair Day', code:'30301', icon: 'hair-day', href:'https://www.accuweather.com/en/us/new-york-ny/10007/hair-day-weather/349727', alarm:[3,4,5], curCategory:'Watch', curStatusRed:false},
+{group:'2.1', name:'Snow Days', code:'30402', icon: 'snow-day', href:'https://www.accuweather.com/en/us/new-york-ny/10007/snow-day-weather/349727', alarm:[4,5], curCategory:'Very Unlikely', curStatusRed:false},
+{group:'2.2', name:'D.I.Y.', code:'30101', icon: 'diy', href:'https://www.accuweather.com/en/us/new-york-ny/10007/diy-weather/349727', alarm:[1], curCategory:'Good', curStatusRed:false},
+{group:'2.2', name:'Lawn & Garden', code:'30201', icon: 'lawn-garden', href:'https://www.accuweather.com/en/us/new-york-ny/10007/lawn-garden-weather/349727', alarm:[1], curCategory:'Poor', curStatusRed:true},
+{group:'2.2', name:'Home Energy', code:'30501', icon: 'home-energy', href:'https://www.accuweather.com/en/us/new-york-ny/10007/home-energy-weather/349727', alarm:[1], curCategory:'Poor', curStatusRed:true},
+{group:'2.2', name:'Entertaining', code:'40102', icon: 'outdoor-entertaining', href:'https://www.accuweather.com/en/us/new-york-ny/10007/outdoor-entertaining-weather/349727', alarm:[1], curCategory:'Fair', curStatusRed:false},
+{group:'2.2', name:'Mosquito', code:'40103', icon: 'mosquito-activity', href:'https://www.accuweather.com/en/us/new-york-ny/10007/mosquito-activity-weather/349727', alarm:[1], curCategory:'Low', curStatusRed:false},
+{group:'3.1', name:'Golf', code:'40201', icon: 'golf', href:'https://www.accuweather.com/en/us/new-york-ny/10007/golf-weather/349727', alarm:[1], curCategory:'Good', curStatusRed:false},
+{group:'3.1', name:'Ski', code:'40301', icon: 'ski', href:'https://www.accuweather.com/en/us/new-york-ny/10007/ski-weather/349727', alarm:[1], curCategory:'Poor', curStatusRed:true},
+{group:'3.1', name:'Hunting', code:'40601', icon: 'hunting', href:'https://www.accuweather.com/en/us/new-york-ny/10007/hunting-weather/349727', alarm:[1], curCategory:'Good', curStatusRed:false},
+{group:'3.1', name:'Fishing', code:'40602', icon: 'fishing', href:'https://www.accuweather.com/en/us/new-york-ny/10007/fishing-weather/349727', alarm:[1], curCategory:'Very Good', curStatusRed:false},
+{group:'3.1', name:'Running', code:'40901', icon: 'running', href:'https://www.accuweather.com/en/us/new-york-ny/10007/running-weather/349727', alarm:[1], curCategory:'Very Good', curStatusRed:false},
+{group:'3.1', name:'Hiking', code:'40903', icon: 'hiking', href:'https://www.accuweather.com/en/us/new-york-ny/10007/hiking-weather/349727', alarm:[1], curCategory:'Good', curStatusRed:false},
+{group:'3.1', name:'Biking', code:'40902', icon: 'biking', href:'https://www.accuweather.com/en/us/new-york-ny/10007/biking-weather/349727', alarm:[1], curCategory:'Very Good', curStatusRed:false},
+{group:'3.1', name:'Sun & Sand', code:'40401', icon: 'sun-sand', href:'https://www.accuweather.com/en/us/new-york-ny/10007/sun-sand-weather/349727', alarm:[1], curCategory:'Poor', curStatusRed:true},
+{group:'3.1', name:'Sailing', code:'40402', icon: 'sailing', href:'https://www.accuweather.com/en/us/new-york-ny/10007/sailing-weather/349727', alarm:[1], curCategory:'Very Good', curStatusRed:false}];
+</script>
+
+
+
+    <script type="text/javascript">
+        if (apgConfigObj.minutecast) {
+            apgConfigObj.minutecast.contentAmount = '1';
+        }
+    </script>
+
+
+<script type="text/javascript">
+    var apgPageInfoObj = {
+        ad_site: 'us', section: 'news', ad_section: 'newsandvideo', page: 'news', ad_page: 'news', page_code: '', crumb_trail: ['News', 'News', 'Home'], pageType: 'content', pageExt: '', adPos: { atf728: true, atfPencil: true, atf300: true, atf160: false, btf728: true, btf300: true, popunder: true, prestitial: true, links: true, ptoSkin: false, tiles: [
+{
+  collectionid: "top",
+  divid: "top",
+  atf: true,
+  companion: false,
+  name: "Tile1",
+  enabled: true,
+  sizes: {
+    ATF728:true,
+    ATFPENCIL:true
+  },
+  bidders: [
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336565"
+    }
+  }
+,
+  {
+    bidder:"pubmatic",
+    params: {
+      "publisherId":"34576",
+      "adSlot":"{AdUnit}@728x90"
+    }
+  }
+  ]
+},
+{
+  collectionid: "top_right",
+  divid: "top_right",
+  atf: true,
+  companion: false,
+  name: "Tile2",
+  enabled: true,
+  sizes: {
+    ATF300:true,
+    ATF300_NONPROD:true,
+    ATF160:false
+  },
+  bidders: [
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336566"
+    }
+  }
+,
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336567"
+    }
+  }
+,
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336568"
+    }
+  }
+,
+  {
+    bidder:"pubmatic",
+    params: {
+      "publisherId":"34576",
+      "adSlot":"{AdUnit}@300x600"
+    }
+  }
+,
+  {
+    bidder:"pubmatic",
+    params: {
+      "publisherId":"34576",
+      "adSlot":"{AdUnit}@300x250"
+    }
+  }
+  ]
+},
+{
+  collectionid: "bottom_right",
+  divid: "bottom_right",
+  atf: false,
+  companion: false,
+  name: "Tile3",
+  enabled: true,
+  sizes: {
+    BTF300:true,
+    BTF300_NONPROD:true
+  },
+  bidders: [
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336566"
+    }
+  }
+,
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336567"
+    }
+  }
+,
+  {
+    bidder:"sovrn",
+    params: {
+      "tagid":"336568"
+    }
+  }
+,
+  {
+    bidder:"pubmatic",
+    params: {
+      "publisherId":"34576",
+      "adSlot":"{AdUnit}@300x600"
+    }
+  }
+,
+  {
+    bidder:"pubmatic",
+    params: {
+      "publisherId":"34576",
+      "adSlot":"{AdUnit}@300x250"
+    }
+  }
+  ]
+},
+{
+  collectionid: "bottom",
+  divid: "bottom",
+  atf: false,
+  companion: false,
+  name: "Tile4",
+  enabled: true,
+  sizes: {
+    BTF728:true
+  },
+  bidders: [
+  {
+    bidder:"pubmatic",
+    params: {
+      "publisherId":"34576",
+      "adSlot":"{AdUnit}@728x90"
+    }
+  }
+  ]
+},
+{
+  collectionid: "thin_top_right",
+  divid: "top_right",
+  atf: true,
+  companion: false,
+  name: "Tile5",
+  enabled: false,
+  sizes: {
+    ATF300:false,
+    ATF300_NONPROD:false,
+    ATF160:true,
+    ATF_TRR:true
+  },
+  bidders: [
+  ]
+},
+{
+  collectionid: "thin_bottom_right",
+  divid: "bottom_right",
+  atf: false,
+  companion: false,
+  name: "Tile6",
+  enabled: false,
+  sizes: {
+    ATF160:true,
+    BTF_TRR:true
+  },
+  bidders: [
+  ]
+}]
+ },
+        adUnit: { platform: "web", country: "us", section: "news_info", template: "news" }
+    };
+
+</script>
+
+
+            <script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+        {'gtm.start': new Date().getTime(),event:'gtm.js'}
+        );var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P7HTGM');
+    </script>
+
+
+
+
+
+    <script type="text/javascript" src="https://vortex.accuweather.com/adc2010/javascripts/bundle-refactor-20180213-1001.js"></script>
+
+
+
+
+
+
+<script type="text/javascript">
+  function onImageLoadError(obj) {
+    obj.src = 'https://vortex.accuweather.com/adc2010/images/misc/default-video-image.jpg';
+  }
+  var stickyVideoConfig = {
+    origin: null,
+    video: null,
+    closed: false,
+    timer: null
+  };
+  function attachVideo() {
+    stickyVideoConfig.video.css({
+      position: "relative",
+      top: 0,
+      left: 0,
+      margin: 0,
+      width: stickyVideoConfig.origin.width,
+      height: stickyVideoConfig.origin.height,
+      transition: "all .75s"
+    });
+    $("#closeSticky").css("display","none");
+  }
+  function detachVideo() {
+    // Get scroll position in cross-browser supported way
+    var scrollY = (window.pageYOffset !== undefined)
+      ? window.pageYOffset
+      : ((document.compatMode || "") === "CSS1Compat")
+        ? document.documentElement.scrollTop
+        : document.body.scrollTop;
+
+    var c = stickyVideoConfig;
+    c.video.css({
+      position: "fixed",
+      top: c.origin.top-scrollY,
+      left: c.origin.left,
+      width: c.origin.width,
+      height: c.origin.height,
+      transition: "none"
+    });
+    var minWidth = parseInt(c.video.css("minWidth")) || 340;
+    c.video.css({
+      width: minWidth,
+      height: 200,
+      top: $(window).height() - 200,
+      left: $(window).width() - minWidth,
+      margin: -20,
+      transition: "all .75s"
+    });
+    $("#vidWrapper").css("height",c.origin.height);
+    $("#closeSticky").css("display","block");
+  }
+  function setupStickyVideoConfig() {
+    var c = stickyVideoConfig;
+    // Ooyala playlist classed differently in different places,
+    // but class is our best selector due to consistency
+    var selector = null;
+    [
+      ".EmbedOoyalaPlaylist-video",
+      ".OoyalaPlayerBlog-video",
+      ".VideoPlayerOoyala-video"
+    ].forEach(function(classType){
+      if($(classType).length){
+        selector = $(classType);
+      }
+    });
+    if(selector){
+      if(!$("#vidWrapper").length){
+        selector.wrap("<div id='vidWrapper'></div>");
+      }
+      c.video = selector;
+      c.video.css("z-index", "999");
+      c.origin = {
+        top: parseInt(c.video.offset().top),
+        left: parseInt(c.video.offset().left),
+        width: parseInt(c.video.width()),
+        height: parseInt(c.video.height())
+      };
+      c.closed = false;
+      c.timer = null;
+
+      c.video.append("<span id='closeSticky'></span>");
+      $("#closeSticky").css({
+        background: "url('https://vortex.accuweather.com/adc2010/images/cross_withcircle.png') center/100% no-repeat",
+        position: "absolute",
+        top: "-15px",
+        right: "-15px",
+        width: "30px",
+        height: "30px",
+        display: "none",
+        "z-index": 99999
+      })
+      .bind("click", function() {
+        c.closed = true;
+        attachVideo();
+      });
+    }
+  }
+  function adjustStickyVideoSize() {
+    var c = stickyVideoConfig;
+    if(!c.origin || !$("#closeSticky").length){
+      setupStickyVideoConfig();
+    }
+    var scrollY = (window.pageYOffset !== undefined)
+      ? window.pageYOffset
+      : ((document.compatMode || "") === "CSS1Compat")
+        ? document.documentElement.scrollTop
+        : document.body.scrollTop;
+    var shouldDetach = (
+      scrollY > c.origin.top && !c.closed
+      && (window.pp.isPlaying() || window.pp.isAdPlaying())
+    );
+    var isDetached = (c.video.css("position") == "fixed");
+
+    if(shouldDetach && !isDetached){ detachVideo(); }
+    if(!shouldDetach && isDetached){ attachVideo(); }
+    if(!shouldDetach && !isDetached && c.video.css("top") == "0px") {
+      c.origin = {
+        top: parseInt(c.video.offset().top),
+        left: parseInt(c.video.offset().left),
+        width: parseInt(c.video.width()),
+        height: parseInt(c.video.height()) || parseInt($(".innerWrapper").outerHeight())
+      };
+      $("#vidWrapper").css("height",c.origin.height);
+    }
+  }
+  $(document).ready(function () {
+    if ($('.sponsor-88x30').html() || $('.sponsor-88x30').css('background')) {
+      $('.awx-story h2').width(485);
+    }
+    adjustStickyVideoSize();
+    $(window).on('scroll', function(e) {
+      adjustStickyVideoSize();
+    });
+  });
+</script>
+
+
+<script type="text/javascript" src="https://accuweather.brightspotcdn.com/resource/esi/slick.ed45e555b6bec615ce06f604b4c5c2f6.gz.js"></script>
+<script type="text/javascript" src="https://accuweather.brightspotcdn.com/resource/esi/main.min.abca4ffa3037928be286d9920ce18ab1.gz.js"></script>
+
+
+    <script type="text/javascript" src="https://z.moatads.com/accuweatherhead614518159198/moatframe.js"></script>
+
+
+    <script>
+        var _comscore = _comscore || [];
+        _comscore.push({ c1: "2", c2: "6005068" });
+        (function () {
+            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+            s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+            el.parentNode.insertBefore(s, el);
+        })();
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })()
+    </script>
+
+<script>!function(){function e(e){d.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}function n(e,n){var a=void 0!==window.aFeoApplied?"1":"0";BOOMR.addVar("ak.feo",a)}function a(e,n){var a=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.r"];BOOMR.removeVar(a)}function t(){BOOMR.subscribe("before_beacon",n,null,null),BOOMR.addVar({"ak.v":1,"ak.cp":"100709","ak.ai":"295874","ak.ol":"0","ak.cr":6,"ak.ipv":4,"ak.proto":"","ak.rid":"176e8998","ak.r":28247,"ak.a2":0,"ak.m":"e12","ak.n":"","ak.bpcip":"64.84.82.1","ak.cport":6260,"ak.gh":"23.215.10.79","ak.quicv":"","ak.csrc":"-"}),BOOMR.subscribe("onbeacon",a,null,null)}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetExecuted=!0;var o,i,r,c=document.createElement("iframe"),d=window;d.addEventListener?d.addEventListener("load",e,!1):d.attachEvent&&d.attachEvent("onload",e),c.src="javascript:void(0)",c.title="",c.role="presentation",(c.frameElement||c).style.cssText="width:0;height:0;border:0;display:none;",r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(c,r);try{i=c.contentWindow.document}catch(e){o=document.domain,c.src="javascript:var d=document.open();d.domain='"+o+"';void(0);",i=c.contentWindow.document}i.open()._l=function(){var e=this.createElement("script");o&&(this.domain=o),e.id="boomr-if-as",e.src="https://s.go-mpulse.net/boomerang/WVCM2-8MB3H-J4PHA-TKSJD-9YGAB",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(e)},i.write('<bo'+'dy onload="document._l();">'),i.close();"300".length>0&&d&&"performance"in d&&d.performance&&d.performance.setResourceTimingBufferSize&&d.performance.setResourceTimingBufferSize(300),document.addEventListener?document.addEventListener("onBoomerangLoaded",t):document.attachEvent&&document.attachEvent("onpropertychange",function(e){e||(e=window.event),e&&"onBoomerangLoaded"===e.propertyName&&t()})}}();</script></head>
+<body id="news-news" class="en-us  ">
+    <!--[if lte IE 8]>
+    <div class="old-alert time-to-upgrade">
+        <div class="inner">
+            <p>Your version of Internet Explorer is no longer supported. Please <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">upgrade</a> your browser for the best AccuWeather experience.</p>
+            <div class="close">X</div>
+        </div>
+    </div>
+    <![endif]-->
+
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-P7HTGM"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager -->
+
+
+<span id="dynamic-menu-container"></span>
+<div id="menu-cities" class="menu menu-list add-interest-menu">
+  <div class="menu-head-lt">
+    <div class="menu-head-rt">
+      <div class="menu-head"></div>
+    </div>
+  </div>
+  <!-- /.menu-head-lt -->
+  <div class="menu-body-lt">
+    <div class="menu-body-rt">
+      <div class="menu-body">
+        <ul class="menu-items">
+            <li class="title">MY RECENT LOCATIONS<span>&deg;F</span></li>
+            <li>
+                <a href="https://www.accuweather.com/en/us/new-york-ny/10017/weather-forecast/349727">New York, NY<span class="temp">56&deg;</span><span class="icon i-7-s"></span></a>
+            </li>
+            <li>
+                <a href="https://www.accuweather.com/en/us/miami-fl/33128/weather-forecast/347936">Miami, FL<span class="temp">81&deg;</span><span class="icon i-33-s"></span></a>
+            </li>
+            <li>
+                <a href="https://www.accuweather.com/en/us/los-angeles-ca/90012/weather-forecast/347625">Los Angeles, CA<span class="temp">61&deg;</span><span class="icon i-1-s"></span></a>
+            </li>
+          <li class="more"><a href="https://www.accuweather.com/en/browse-locations">Browse for your location<span></span></a></li>
+        </ul>
+        <span class="arrow"></span><span class="arrow-border"></span>
+      </div>
+    </div>
+  </div>
+  <!-- /.menu-body-lt -->
+  <div class="menu-foot-lt">
+    <div class="menu-foot-rt">
+      <div class="menu-foot"></div>
+    </div>
+  </div>
+  <!-- /.menu-foot-lt -->
+</div>
+
+
+
+
+
+<!-- add interest dropdown -->
+<div id="add-interest-dropdown" class="clearfix">
+
+	<div id="inner-content" class="clearfix">
+	</div><!-- end add-interest-inner-content -->
+
+	<!-- icons -->
+	<span class="arrow"></span>
+	<span class="arrow-border"></span>
+	<!-- end icons -->
+
+</div><!-- end id="add-interest-dropdown" -->
+
+
+<div id="wrap" class="winter h-s">
+
+        <!-- /#header-ad -->
+        <style type="text/css">
+            #header-nav {
+                overflow: visible;
+                position: static;
+                height: auto;
+            }
+        </style>
+    <div class="settings-wrapper">
+
+<div id="wrap-country-settings">
+    <div id="country-settings">
+        <a href="#menu-country" id="bt-menu-country" class="menu-arrow tmenu { el:'#menu-country', affix: { from: 'nw', to: 'nw', offset: [ -6, -8 ] } }"><strong><span class="ir flag-US">United States</span></strong></a>
+
+        <div id="menu-country" class="menu menu-with-title">
+
+            <h3 class="menu-title"><span><span class="flag-US">United States</span></span></h3>
+
+            <div class="menu-head-lt">
+                <div class="menu-head-rt">
+                    <div class="menu-head"></div>
+                </div>
+            </div>
+            <!-- /.menu-head-lt -->
+            <div class="menu-body-lt">
+                <div class="menu-body-rt">
+                    <div class="menu-body">
+
+                        <h4>My Recent Countries</h4>
+
+                        <ul class="menu-items">
+                                    <li><a href="https://www.accuweather.com/en/us/united-states-weather" class="flag-US">United States</a></li>
+                                    <li><a href="https://www.accuweather.com/en/cn/china-weather" class="flag-CN">China</a></li>
+                                    <li><a href="https://www.accuweather.com/en/gb/united-kingdom-weather" class="flag-GB">United Kingdom</a></li>
+                        </ul>
+
+                        <a href="#country-selector" id="bt-more-countries">More Countries</a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.menu-body-lt -->
+
+            <div class="menu-foot-lt">
+                <div class="menu-foot-rt">
+                    <div class="menu-foot"></div>
+                </div>
+            </div>
+            <!-- /.menu-foot-lt -->
+
+        </div>
+        <!-- /#menu-country -->
+
+        <ul id="country-breadcrumbs">
+
+                    <li class="first"><a href="https://www.accuweather.com/en/world-weather">World</a></li>
+                    <li><a href="https://www.accuweather.com/en/north-america-weather">North America</a></li>
+                    <li><a href="https://www.accuweather.com/en/us/united-states-weather">United States</a></li>
+                    <li><a href="https://www.accuweather.com/en/us/ny/new-york-weather">New York</a></li>
+                        <li class="last"><a href="https://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727">New York</a></li>
+    </ul>
+    <!-- /#country-breadcrumbs -->
+  </div>
+  <!-- /#nav-country -->
+</div>
+<!-- /#wrap-nav-country -->
+
+
+
+        <div class="control-wrapper">
+            <a id="bt-menu-settings" class="tmenu { el:'#menu-settings', affix: { from: 'ne', to: 'ne', offset: [ 0,-6 ] } }"><span class="menu-arrow"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>, &deg;F</span></a>
+            <div id="menu-settings" class="menu menu-with-title">
+
+    <h3 class="menu-title"><span></span></h3>
+
+    <div class="menu-head-lt">
+        <div class="menu-head-rt">
+            <div class="menu-head"></div>
+        </div>
+    </div>
+    <!-- /.menu-head-lt -->
+    <div class="menu-body-lt">
+        <div class="menu-body-rt">
+            <div class="menu-body">
+
+                <h4>My Settings</h4>
+
+                <div class="control-wrap">
+
+                    <form action="" method="post" autocomplete="false">
+
+                        <label for="settings-language"></label>
+                            <select id="settings-language" name="language" class="match-toggle">
+                                <option value="en-us">English (US)</option>
+<option value="es">Espa&#241;ol</option>
+<option value="fr">Fran&#231;ais</option>
+<option value="da">Dansk</option>
+<option value="pt-pt">Portugu&#234;s</option>
+<option value="nl">Nederlands</option>
+<option value="no">Norsk</option>
+<option value="it">Italiano</option>
+<option value="de">Deutsch</option>
+<option value="sv">Svenska</option>
+<option value="fi">Suomi</option>
+<option value="zh-hk">中文 (HK)</option>
+<option value="zh-cn">中文 (SIM)</option>
+<option value="zh-tw">中文 (Taiwan)</option>
+<option value="es-ar">Espa&#241;ol (Argentina)</option>
+<option value="es-mx">Espa&#241;ol (Latin America)</option>
+<option value="sk">Slovenčinu</option>
+<option value="ro">Romana</option>
+<option value="cs">Čeština</option>
+<option value="hu">Magyar</option>
+<option value="pl">Polski</option>
+<option value="ca">Catal&#224;</option>
+<option value="pt-br">Portugu&#234;s (Brazil)</option>
+<option value="hi">हिन्दी</option>
+<option value="ru">русский</option>
+<option value="ar">عربي</option>
+<option value="el">Ελληνικά</option>
+<option value="en-gb">English (UK)</option>
+<option value="ja">日本語</option>
+<option value="ko">한국어</option>
+<option value="tr">T&#220;RK&#199;E</option>
+<option value="fr-ca">Fran&#231;ais (Canada)</option>
+<option value="he">עברית</option>
+<option value="sl">Slovenski</option>
+<option value="uk">Українське</option>
+<option value="id">Bahasa Indonesia</option>
+<option value="bg">български</option>
+<option value="et">Eesti keeles</option>
+<option value="hr">Hrvatski</option>
+<option value="kk">Қазақша</option>
+<option value="lt">Lietuvių</option>
+<option value="lv">Latviski</option>
+<option value="mk">Македонски</option>
+<option value="ms">Bahasa Melayu</option>
+<option value="tl">Tagalog</option>
+<option value="sr">Srpski</option>
+<option value="th">ไทย</option>
+<option value="vi">Tiếng Việt</option>
+<option value="fa">فارسی</option>
+<option value="bn">বাংলা</option>
+<option value="bs">bosanski</option>
+<option value="is">íslenska</option>
+<option value="sw">Kiswahili</option>
+<option value="ur">اُردُو</option>
+<option value="sr-me">Crnogorski</option>
+<option value="uz">Oʻzbekcha</option>
+<option value="az">Azərbaycanca</option>
+<option value="ta">தமிழ்</option>
+<option value="gu">ગુજરાતી</option>
+<option value="kn">ಕನ್ನಡ</option>
+<option value="te">తెలుగు</option>
+<option value="mr">मराठी</option>
+<option value="pa">ਪੰਜਾਬੀ</option>
+
+                            </select>
+
+                </div>
+
+                <!-- /.control-wrap -->
+
+                    <div id="radio-toggle-temp-unit" class="radio-toggle">
+                        <label for="settings-temp-unit-farenheit" class="first">
+                            <span>&deg;F</span>
+                            <input id="settings-temp-unit-farenheit" name="temp_unit" type="radio" checked="checked" value="farenheit" />
+                        </label>
+
+                        <label for="settings-temp-unit-celsius" class="last">
+                            <span>&deg;C</span>
+                            <input id="settings-temp-unit-celsius" name="temp_unit" type="radio"  value="celsius" />
+                        </label>
+                    </div>
+
+                <!-- /.radio-toggle -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.menu-body-lt -->
+
+    <div class="menu-foot-lt">
+        <div class="menu-foot-rt">
+            <div class="menu-foot"></div>
+        </div>
+    </div>
+    <!-- /.menu-foot-lt -->
+</div>
+<!-- /#settings-menu -->
+        </div>
+    </div>
+
+  <div id="wrap-header-nav" class="night">
+    <div id="header-nav" class="i-7-header">
+
+
+<div id="header">
+    <div id="country-selector" class="strong panel">
+
+        <div class="panel-head-lt"><div class="panel-head-rt"><div class="panel-head"></div></div></div>
+        <div class="panel-body-lt">
+            <div class="panel-body-rt">
+                <div class="panel-body">
+                    <div class="title">
+                        <button class="bt bt-panel-close">Close</button>
+                        <div id="country-selector-recent">
+                            <h3>My Recent Countries</h3>
+                            <ul>
+                                        <li class="first"><a href="https://www.accuweather.com/en/us/united-states-weather" class="flag-US">United States</a></li>
+                                        <li class=""><a href="https://www.accuweather.com/en/cn/china-weather" class="flag-CN">China</a></li>
+                                        <li class=""><a href="https://www.accuweather.com/en/gb/united-kingdom-weather" class="flag-GB">United Kingdom</a></li>
+                            </ul>
+                        </div>
+                        <!-- /#country-selector-recent -->
+                    </div>
+                    <!-- /.title -->
+
+                    <div id="country-selector-region" class="panel-content">
+
+                        <div class="title">
+                            <h3>Select a Region</h3>
+                        </div>
+
+                        <div class="content">
+
+                            <ul id="country-selector-region-list" class="menu-items">
+                                <li><a class="link-region" id="link-region-afr" href="#region-afr">Africa</a></li>
+                                <li><a class="link-region" id="link-region-ant" href="#region-ant">Antarctica</a></li>
+                                <li><a class="link-region" id="link-region-arc" href="#region-arc">Arctic</a></li>
+                                <li><a class="link-region" id="link-region-asi" href="#region-asi">Asia</a></li>
+                                <li><a class="link-region" id="link-region-cac" href="#region-cac">Central America</a></li>
+                                <li><a class="link-region" id="link-region-eur" href="#region-eur">Europe</a></li>
+                                <li><a class="link-region" id="link-region-mea" href="#region-mea">Middle East</a></li>
+                                <li><a class="link-region" id="link-region-nam" href="#region-nam">North America</a></li>
+                                <li><a class="link-region" id="link-region-ocn" href="#region-ocn">Oceania</a></li>
+                                <li><a class="link-region" id="link-region-sam" href="#region-sam">South America</a></li>
+                            </ul>
+                            <!-- /#country-selector-region-list -->
+
+                            <div id="country-selector-region-map">
+                            </div>
+                            <!-- /#country-selector-region-map -->
+                        </div>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /#country-selector-region -->
+
+
+                    <div id="country-selector-country" class="panel-content">
+                        <div id="region-afr" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /africa-->
+                        <div id="region-eur" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /europe-->
+                        <div id="region-nam" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /north america-->
+                        <div id="region-sam" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /south america-->
+                        <div id="region-cac" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /central america-->
+                        <div id="region-ocn" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /oceania-->
+                        <div id="region-mea" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /middle east-->
+                        <div id="region-ant" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /antarctica-->
+                        <div id="region-arc" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /arctic-->
+                        <div id="region-asi" class="region">
+                            <div class="title">
+                                <a href="#country-selector-region" class="world"><span>World</span></a>
+                                <h3></h3>
+                            </div>
+                            <div class="items"> </div>
+                        </div>
+                        <!-- /asia-->
+                    </div>
+                    <!-- /#country-selector-country -->
+
+
+                    <div id="country-selector-notes">
+                        <p class="first">
+                            Note: Select a region before finding a country.
+                        </p>
+
+                        <p></p>
+
+                    </div>
+                    <!-- /#country-selector-notes -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-body-lt -->
+
+        <div class="panel-foot-lt"><div class="panel-foot-rt"><div class="panel-foot"></div></div></div>
+
+    </div>
+    <!-- / #country-selector -->
+
+  <div id="header-logo-search" class="clearfix">
+
+            <div id="header-logo" class="ir no-partner">
+                <a href="https://www.accuweather.com/">
+                    <span>Weather</span>
+                </a>
+            </div>
+
+
+            <div class="right-side">
+                <div id="wrap-s-rt">
+                    <div id="wrap-s-lt">
+                        <div id="wrap-s" class="tmenu { affix: {offset: [ 0, 7 ], to: 'sw', from: 'nw'},el: '#menu-cities' }">
+                            <form id="findcity" action="https://www.accuweather.com/en/search-locations" method="post">
+
+                                <input type="hidden" name="enter-postal-city" value="Enter city or postal code" />
+                                <input id="s" name="s" type="text" autocomplete="off" class="text hint" value="New York, NY" data-default-value="New York, NY" data-default-route="https://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727" />
+
+                                <input type="hidden" name="rn" value="3day" />
+                                <button type="button" class="bt bt-go">
+                                    <img src="https://vortex.accuweather.com/adc2010/images/slate/search-glass.svg"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /#wrap-s-rt -->
+
+                <div id="control-panel">
+                    <div id="social-connect">
+                        <ul class="social-list">
+                            <li class="label">Follow us on</li>
+                            <li class="social-icon"><a id="connect_facebook" href="https://www.facebook.com/AccuWeather" class="facebook" target="_blank"></a></li>
+                            <li class="social-icon"><a id="connect_twitter" href="https://twitter.com/breakingweather" class="twitter" target="_blank"></a></li>
+                            <li class="social-icon"><a id="connect_instagram" href="https://www.instagram.com/accuweather/" class="instagram" target="_blank"></a></li>
+                            <li class="social-icon"><a id="connect_youtube" href="https://www.youtube.com/user/accuweather" class="youtube" target="_blank"></a></li>
+                        </ul>
+                    </div>
+                    <a id="bt-menu-login" class="tmenu { el:'#menu-premium', affix: { to: 'ne', from: 'ne', offset: [ 0,-6 ] } }"><span class="menu-arrow"><span>Login</span></span></a>
+                </div>
+                <!--#control-panel-->
+            </div>
+        </div>
+  <!-- /#header-logo-search -->
+    </div>
+<!-- /#header -->
+
+    </div>
+    <!-- /#header-nav -->
+  </div>
+  <!-- /#wrap-header-nav -->
+
+        <div class="sub-header-wrap">
+            <div class="inner-city-header">
+<div id="nav-main-add-interests" class="clearfix alpha">
+
+	<div id="nav-main-background"></div>
+
+	<ul id="nav-current-location" class="sub-nav">
+		<li id="current-country-tab" class="selected tmenu { affix: {offset: [ 0, 5 ], to: 'sw', from: 'nw' }, el: '#current-country-menu' }">
+			<a href="https://www.accuweather.com/en/us/united-states-weather" class="tab">
+				<span class="current-country">United States</span>
+				<span class="title">Weather</span>
+			</a>
+			<span class="bottom-line"></span>
+		</li>
+    <li id="country-dropdown-tab" class="location-menu">
+        <a href="#" class="tab">
+            <span class="arrow"></span>
+        </a>
+        <span class="cover-line"></span>
+    </li>
+                            <li id="current-city-tab" class="">
+			<a href="https://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727" class="tab">
+                                    <span class="current-city">New York, NY</span>
+
+
+                                    <span><div class="icon icon-inline i-7-s"></div></span>
+                                    <span class="local-temp">56&deg;F</span>
+				<span class="divider"></span>
+                <span class="more-info-arrow"></span>
+				<div class="more-info-content">
+				</div><!-- end more-info-content -->
+			</a>
+
+		</li>
+		<li id="locations-dropdown-tab" class="location-menu { el: '#locations-dropdown-menu' }">
+			<a href="#" class="tab">
+				<span class="arrow"></span>
+				<span class="right-arrow"></span>
+			</a>
+			<span class="cover-line"></span>
+		</li>
+                                <noscript>
+                                    <style>
+                                        #special-forecasts-dropdown-tab,#lifestyle-dropdown-tab {
+                                            display: block !important;
+                                        }
+                                    </style>
+                                </noscript>
+                                <li id="lifestyle-dropdown-tab" class="location-menu">
+                                    <a href="#" class="tab">
+                                        <span class="arrow"></span>
+                                        <span class="right-arrow"></span>
+                                    </a>
+                                    <span class="cover-line"></span>
+                                </li>
+                                <li id="special-forecasts-dropdown-tab" class="location-menu ">
+                                    <a href="https://www.accuweather.com/en/us/new-york-ny/10007/allergies-weather/349727" class="tab">
+
+                                        <span>
+                                            <div class="special-forecast-icon-container">
+                                                <div class="special-forecast-icon allergies" data-icon="allergies"></div>
+                                            </div>
+                                            <span class="special-forecast-label highlighted">Allergies</span><span>:</span> <span class="special-forecast-value ">Low</span>
+                                        </span>
+                                    </a>
+                                </li>
+	</ul><!-- end nav-current-location -->
+                </div><!-- end nav-main-add-interests-->
+
+            </div><!--inner city header -->
+
+            <div class="country-dropdown">
+                <div class="inner">
+                    <div class="col">
+                            <h3><a data-label="Radar" href="https://www.accuweather.com/en/us/new-york/weather-radar">Radar & Maps</a></h3>
+                            <ul>
+                                <li><a data-label="Radar" href="https://www.accuweather.com/en/us/new-york/weather-radar">Radar Maps</a></li>
+                                <li><a data-label="Satellite" href="https://www.accuweather.com/en/us/new-york/satellite">Satellite Maps</a></li>
+                                <li><a data-label="Forecast" href="https://www.accuweather.com/en/us/national/weather-forecast-maps">Forecast Maps</a></li>
+                            </ul>
+                    </div>
+                        <div class="col">
+                            <h3><a data-label="News" href="https://www.accuweather.com/en/weather-news">News & Video</a></h3>
+                            <ul>
+                                <li><a data-label="News" href="https://www.accuweather.com/en/weather-news">Weather News</a></li>
+
+                                <li><a data-label="Video" href="https://www.accuweather.com/en/videos/?utm_source=accuweather&amp;utm_medium=accuweather&amp;utm_campaign=sitenav" target="_blank">Weather Video</a></li>
+                                <li><a data-label="Blogs" href="https://www.accuweather.com/en/weather-blogs">Weather Blogs</a></li>
+                                <li><a data-label="Personalities" href="https://www.accuweather.com/en/personalities">Personalities</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h3><a data-label="Extreme" href="https://www.accuweather.com/en/us/severe-weather">Extreme Weather</a></h3>
+                            <ul>
+                                <li><a data-label="Hurricane" href="https://www.accuweather.com/en/hurricane">Hurricane Center</a></li>
+                                <li><a data-label="Climate" href="https://www.accuweather.com/en/climate-change">Climate Change</a></li>
+                                <li><a data-label="Winter" href="https://www.accuweather.com/en/us/winter-weather">Winter Weather</a></li>
+                                <li><a data-label="Severe" href="https://www.accuweather.com/en/us/severe-weather">Severe Weather</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h3><a data-label="Social" href="https://www.accuweather.com/en/social">Social</a></h3>
+                            <ul>
+                                <li><a data-label="Social" href="https://www.accuweather.com/en/social">Social Media</a></li>
+                                <li><a data-label="Apps" href="https://www.accuweather.com/en/downloads">Apps & Downloads</a></li>
+                                <li><a data-label="Photos" href="http://photo.accuweather.com">Weather Photos</a></li>
+                                <li><a data-label="Forums" href="http://forums.accuweather.com">Weather Forums</a></li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <!-- /.country-dropdown -->
+
+
+    <div class="special-forecast-dropdown">
+        <div class="inner">
+            <h2>Personalized Forecasts <span class="icon-pencil"></span></h2>
+            <div class="col">
+                <h3>A.M. Planner</h3>
+                <ul>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/driving-weather/349727">Driving</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/school-day-weather/349727">School Day</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/hair-day-weather/349727">Hair Day</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/snow-day-weather/349727">Snow Days</a>
+</li>
+                </ul>
+                <h3>Home & Garden</h3>
+                <ul>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/diy-weather/349727">D.I.Y.</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/lawn-garden-weather/349727">Lawn &amp; Garden</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/home-energy-weather/349727">Home Energy</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/outdoor-entertaining-weather/349727">Entertaining</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/mosquito-activity-weather/349727">Mosquito</a>
+</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Sports & Recreation</h3>
+                <ul>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/golf-weather/349727">Golf</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/ski-weather/349727">Ski</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/hunting-weather/349727">Hunting</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/fishing-weather/349727">Fishing</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/running-weather/349727">Running</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/hiking-weather/349727">Hiking</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/biking-weather/349727">Biking</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/sun-sand-weather/349727">Sun & Sand</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/sailing-weather/349727">Sailing</a>
+</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Health</h3>
+                <ul>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/cold-flu-weather/349727">Cold &amp; Flu</a>
+</li>
+                    <li>        <a class="highlighted" href="https://www.accuweather.com/en/us/new-york-ny/10007/allergies-weather/349727">Allergies</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/asthma-weather/349727">Respiratory</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/arthritis-weather/349727">Arthritis</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/migraine-weather/349727">Migraine</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/sinus-weather/349727">Sinus</a>
+</li>
+                </ul>
+                <h3>Miscellaneous</h3>
+                <ul>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/air-travel-weather/349727">Travel</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/astronomy-weather/349727">Astronomy</a>
+</li>
+                    <li>        <a class="" href="https://www.accuweather.com/en/us/new-york-ny/10007/events-weather/349727">Events</a>
+</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Featured Forecast</h3>
+                <ul>
+                    <li><a class="no-select highlighted" href="https://www.accuweather.com/en/us/new-york-ny/10007/allergies-weather/349727">Allergies</a></li>
+                </ul>
+                <h3 class="forecast-favorite-header">My Favorite Forecasts</h3>
+                <ul class="forecast-favorite-list"></ul>
+            </div>
+        </div>
+    </div>
+
+            <div class="recent-locations-dropdown">
+                <div class="inner">
+                    <div class="local-weather col">
+                        <div class="display-name">New York, NY</div>
+                        <h2>Local Weather</h2>
+                        <ul>
+                                <li><a data-label="Today" href="https://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727">Today's Weather</a></li>
+                            <li><a data-label="Hourly" href="https://www.accuweather.com/en/us/new-york-ny/10007/hourly-weather-forecast/349727">Hourly Forecast</a></li>
+                            <li><a data-label="Extended" href="https://www.accuweather.com/en/us/new-york-ny/10007/daily-weather-forecast/349727">Extended</a></li>
+                            <li><a data-label="Weekend" href="https://www.accuweather.com/en/us/new-york-ny/10007/weekend-weather/349727">Weekend</a></li>
+                            <li><a data-label="Month" href="https://www.accuweather.com/en/us/new-york-ny/10007/march-weather/349727">Month Outlook</a></li>
+                            <li><a data-label="Current" href="https://www.accuweather.com/en/us/new-york-ny/10007/current-weather/349727">Current Weather</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-3wide">
+                        <h2>My Recent Locations</h2>
+                        <div id="feed-tabs" class="panel-list">
+                            <ul>
+
+
+
+                                    <li class="night first" data-href="/en/us/new-york-ny/10017/weather-forecast/349727" data-label="Recent 1">
+                                        <div class="bg s">
+                                            <h3><a href="/en/us/new-york-ny/10017/weather-forecast/349727">New York, NY</a></h3>
+                                            <div class="icon i-7-l "></div>
+                                            <div class="info">
+                                                <div class="temp">
+                                                    <span class="large-temp">56&deg;</span>
+                                                    <span class="real-feel">RealFeel&#174; 54&deg;</span>
+                                                </div>
+                                                <ul class="special-forecast"></ul>
+                                            </div>
+                                            <!-- /.info -->
+                                        </div>
+                                        <!-- /.bg -->
+                                    </li>
+                                    <li class="night " data-href="/en/us/miami-fl/33128/weather-forecast/347936" data-label="Recent 2">
+                                        <div class="bg cl">
+                                            <h3><a href="/en/us/miami-fl/33128/weather-forecast/347936">Miami, FL</a></h3>
+                                            <div class="icon i-33-l "></div>
+                                            <div class="info">
+                                                <div class="temp">
+                                                    <span class="large-temp">81&deg;</span>
+                                                    <span class="real-feel">RealFeel&#174; 78&deg;</span>
+                                                </div>
+                                                <ul class="special-forecast"></ul>
+                                            </div>
+                                            <!-- /.info -->
+                                        </div>
+                                        <!-- /.bg -->
+                                    </li>
+                                    <li class="day " data-href="/en/us/los-angeles-ca/90012/weather-forecast/347625" data-label="Recent 3">
+                                        <div class="bg su">
+                                            <h3><a href="/en/us/los-angeles-ca/90012/weather-forecast/347625">Los Angeles, CA</a></h3>
+                                            <div class="icon i-1-l "></div>
+                                            <div class="info">
+                                                <div class="temp">
+                                                    <span class="large-temp">61&deg;</span>
+                                                    <span class="real-feel">RealFeel&#174; 63&deg;</span>
+                                                </div>
+                                                <ul class="special-forecast"></ul>
+                                            </div>
+                                            <!-- /.info -->
+                                        </div>
+                                        <!-- /.bg -->
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-subnav">
+
+
+      <div class="subnav-head-tabs-rt clearfix">
+          <div class="subnav-head-tabs-lt clearfix">
+          <ul class="subnav-tab-buttons">
+
+      <li class="">
+          <a href="https://www.accuweather.com/en/us/united-states-weather">
+          <span>Home</span>
+          </a>
+      </li>
+      <!--
+      <li class="">
+          <a href="https://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727">
+          <span>Forecast</span>
+          </a>
+      </li>
+      -->
+      <li class="">
+                        <a href="https://www.accuweather.com/en/us/new-york/weather-radar">
+          <span>Radar &amp; Maps</span>
+          </a>
+
+      </li>
+        <li class="current">
+            <a href="https://www.accuweather.com/en/weather-news">
+            <span><strong>News &amp; Video</strong></span>
+            </a><div class="nub"></div>
+        </li>
+            <li class="">
+                <a href="https://www.accuweather.com/en/us/severe-weather">
+                <span>Severe Weather</span>
+                </a>
+            </li>
+          <li class="">
+              <a href="https://www.accuweather.com/en/climate-change">
+              <span>Climate</span>
+              </a>
+          </li>
+          <li class="last ">
+              <a href="https://www.accuweather.com/en/social">
+              <span>Social</span>
+              </a>
+          </li>
+<li id="subnavpromo">
+    <a href="https://www.accuweather.com/en/videos/?utm_source=accuweather&amp;utm_medium=accuweather&amp;utm_campaign=orangenavbutton&amp;autoStart=true" target="_blank">
+        <span>Watch News</span>
+    </a>
+</li>
+
+
+          </ul>
+          </div>
+      </div>
+      <!-- /.panel-head-rt -->
+
+            </div>
+        </div>
+
+    <div id="takeover-wrap" style="position:relative;">
+
+        <div id="header-davek">
+            <div id="top"></div>
+            <div id="header-oop" style="position:absolute; width:1px; height:1px; left:0px; top:0px;"></div>
+        </div>
+
+        <div id="wrap-content">
+            <div id="content">
+
+
+<div class="column-1 clearfix">
+
+
+
+
+        <div class="panel-warning">
+            <a href="https://www.accuweather.com/en/us/new-york-ny/10007/weather-warnings/349727">
+                <div class="panel-warning-body-lt">
+                    <div class="panel-warning-body-rt">
+                        <div class="panel-warning-body cl hv" data-href="https://www.accuweather.com/en/us/new-york-ny/10007/weather-warnings/349727">
+                            <div class="panel-warning-body-content">
+                                <div class="icon-warning us ww-flood ww-limegreen "></div>
+                                <p>
+                                    <em>Coastal Flood Warning</em>
+...COASTAL FLOOD WARNING REMAINS IN EFFECT ...                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+<a name="top_of_page"></a>
+
+<div id="panel-main" class="strong panel">
+
+    <div class="panel-hd-rt">
+        <div class="panel-hd-lt"></div>
+    </div>
+
+    <div class="panel-body-lt">
+        <div class="panel-body-rt">
+            <div class="news-feed panel-body news-video-feed">
+                <div class="panel-body-content article-story">
+
+
+                        <ul class="clearfix module-tabs">
+
+        <li class="current">
+
+        <a class=" current" href="https://www.accuweather.com/en/weather-news/">NEWS</a>
+
+</li>
+
+
+        <li class="">
+
+        <a class="" href="https://www.accuweather.com/en/videos/?utm_source&#x3D;accuweather&amp;utm_medium&#x3D;accuweather&amp;utm_campaign&#x3D;sitenav">VIDEOS</a>
+
+</li>
+
+
+        <li class="">
+
+        <a class="" href="https://www.accuweather.com/en/weather-blogs/">BLOGS</a>
+
+</li>
+
+
+        <li class="">
+
+        <a class="" href="https://www.accuweather.com/en/personalities">PERSONALITIES </a>
+
+</li>
+
+
+</ul>
+
+
+
+                    <div>
+
+
+
+
+
+
+                        <div class="panel-title-main">
+                            <h1>Extraordinary warmth envelops Arctic as Polar Vortex dislodges cold air to US, Europe</h1>
+                        </div>
+
+                        <div class="panel-title clearfix">
+
+
+                                <img src="https://accuweather.brightspotcdn.com/b2/78/bdf197db4b86a69d57c21759ef5d/alex-sosnowsky-byline-image.png" alt="Alex Sosnowsky Byline Image" class="byline_photo lt" />
+
+
+                            <div class="lt">
+
+
+                                        <h6><a href="https://www.accuweather.com/en/personalities/alex-sosnowski" ref="author">By <strong>Alex Sosnowski</strong></a>, AccuWeather senior meteorologist
+</h6>
+
+
+
+
+                                    <h5>March 01, 2018, 3:08:17 PM EST</h5>
+
+                            </div>
+                        </div>
+
+                        <!-- Start output of Story Body -->
+
+
+
+
+    <!-- Start of Ooyala Player -->
+
+
+
+        <div class="EmbedOoyalaPlaylist">
+
+        <div class="EmbedOoyalaPlaylist-video" id="EmbedOoyalaPlaylist-video-RrNHZqYTE6VHo8jf_-Rhi9xUduYAq704" style="margin:40px 20px 20px 20px;height: 315px;">
+            <!--iframe  src="https://volume.vox-cdn.com/embed/81b9f0d53?autoplay=true&autoplay_with_sound=true&placement=lede&tracking=article:lede"></iframe-->
+            <iframe src="http://pilievOoyala.github.io/test/aw/article/brightcove_iframe.html"></iframe>
+
+        </div>
+
+        </div>
+
+
+    <!-- End of Ooyala Player -->
+
+
+
+                            <p><br>During the middle of February, a split in the <a href="https://www.accuweather.com/en/weather-news/what-is-a-polar-vortex/21793077" target="_blank">Polar Vortex</a> allowed cold air to plunge southward and warm air to surge northward to the North Pole.</p><p>The Polar Vortex is a storm high in the atmosphere that helps to keep frigid air locked up in the Arctic.<br></p>
+
+                            <p class="">
+
+    <img src="https://accuweather.brightspotcdn.com/dims4/default/1edb0a7/2147483647/resize/590x/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fb0%2F47%2F08be8990426dbd9712cbcd4785ca%2Farctic-polar-bear-ap.jpg" alt="Arctic - polar bear (AP)" />
+
+
+
+
+
+        <span class="caption"><p><i>In this Friday June 13, 2008 file photo, a polar bear stands on an ice floe near the Arctic archipelago of Svalbard, Norway. Extreme warmth gripped the Arctic in 2016. (AP Photo/Romas Dabrukas, File)</i></p></span>
+
+</p>
+
+
+                            <p><br>Occasionally, this storm gets distorted, moves southward and can break apart into lobes which allow cold air to press toward mid-latitudes. However, the cold air usually only pushes southward into one or two continents or parts of continents.</p><p>During the middle of February, the main vortex of frigid air took aim at Europe with a smaller vortex affecting part of western North America, including the western United States.<br></p>
+
+                            <p class="">
+
+    <img src="https://accuweather.brightspotcdn.com/dims4/default/2d8c8f3/2147483647/resize/590x/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F47%2F9a%2Fb0e498394694926aad65bafbb438%2Fstatic-north-pole-thaw.jpg" alt="Static North Pole Thaw" />
+
+
+
+
+
+</p>
+
+
+                            <p><br>"The split of the Polar Vortex was brought on by rapid warming in the upper part of the atmosphere over the North Pole a couple of weeks earlier," according to AccuWeather Lead Long-Range Meteorologist Paul Pastelok.</p><p>This event is called sudden stratospheric warming (SSW).</p><p>The normal west to east movement of storm systems was altered.</p><p>
+
+                            <span class="">
+    <b>RELATED:</b>
+
+    <em>
+
+            <br/><a href="https://www.accuweather.com/en/weather-news/what-is-a-polar-vortex/21793077" target="_top">What is a Polar Vortex?</a>
+
+            <br/><a href="https://www.accuweather.com/en/weather-news/what-happens-in-the-arctic-doesnt-stay-in-the-arctic-scientist-expresses-concerns-about-record-low-arctic-sea-ice-extent/70001432" target="_top">'What happens in the Arctic doesn’t stay in the Arctic:' Scientist expresses concerns about record low Arctic sea ice extent</a>
+
+            <br/><a href="https://www.accuweather.com/en/weather-news/sobering-report-reveals-arctics-temperatures-are-higher-now-than-in-past-1-500-years/70003551" target="_top">’Sobering’ report reveals Arctic’s temperatures are higher now than in past 1,500 years</a>
+
+            <br/><a href="https://www.accuweather.com/en/weather-news/how-rapid-arctic-sea-ice-melt-may-alter-global-weather-patterns/70000514" target="_top">How rapid Arctic sea ice melt may alter global weather patterns</a>
+
+            <br/><a href="https://www.accuweather.com/en/weather-news/why-snow-colder-weather-conditions-dont-debunk-climate-change/70003753" target="_top">Why snow, colder weather conditions don't debunk climate change</a>
+
+    </em>
+</span>
+
+
+                            </p><p>The pattern brought cold and snowy conditions to much of Europe. The same pattern sent chilly conditions, then storms with rain and snow southward in the western U.S.</p><p>An atmospheric roadblock developed around much of the Northern Hemisphere in general.</p><p>With the routine forward motion stalled, warm air was able to push toward the Arctic Circle and cold air was able to push southward toward the Mediterranean Sea and California.</p><p>During the warm surge, temperatures climbed well above the freezing mark (32 degrees Fahrenheit) during the last week of February. Within a few days of the occurrence, it was substantially colder in London and Rome, where temperatures dipped into the 20s and snow fell.<br></p>
+
+                            <p class="">
+
+    <img src="https://accuweather.brightspotcdn.com/dims4/default/53b85e0/2147483647/resize/590x/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F77%2F29%2F9ed1595d44039af5366bb11fbb54%2Fstatic-ap-rome-snow.jpg" alt="Static AP Rome Snow" />
+
+
+
+
+
+        <span class="caption"><p><i>A man stands in front of the ancient Colosseum blanketed by the snow in Rome, Monday, Feb. 26, 2018. (AP Photo/Alessandra Tarantino)</i></p></span>
+
+</p>
+
+
+                            <p><br>During February, average temperatures for the North Pole are near to below zero while average high temperatures are in the 40s in London and the 50s in Rome.</p><p>"Topsy-turvy temperatures in the Arctic versus the mid-latitudes occur every year to some extent," Pastelok said. "Ones that approach this magnitude occur less often, about every two to three years in recent decades."</p><p>The challenge with the end result of SSW's is there is no way to tell for sure which continent the surge of cold air and associated displacement of the Polar Vortex will go until it is almost at the doorstep.<br></p>
+
+                            <center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Winter 2017/2018 temperature anomalies. Large parts of inner Arctic more than 4°C warmer than average 2004-2013, including eastern <a href="https://twitter.com/hashtag/Greenland?src=hash&amp;ref_src=twsrc%5Etfw">#Greenland</a>. Cold over Canada and western <a href="https://twitter.com/hashtag/Greenland?src=hash&amp;ref_src=twsrc%5Etfw">#Greenland</a> - a classical &quot;see-saw&quot;. Note colour scale is different from daily plots on <a href="https://twitter.com/PolarPortal?ref_src=twsrc%5Etfw">@Polarportal</a>. <a href="https://t.co/FdmHu3B06i">pic.twitter.com/FdmHu3B06i</a></p>&mdash; Martin Stendel (@MartinStendel) <a href="https://twitter.com/MartinStendel/status/969119152341471232?ref_src=twsrc%5Etfw">March 1, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+
+                            <p><br>"We expect the Arctic region to cool significantly as the Polar Vortex strengthens and returns to its more routine position near the North Pole by the middle of March," Pastelok said.</p><p>More of a west to east flow of air is likely to resume gradually during March in general.</p><p>Pastelok cautioned that there will still be a slowdown and strengthening of storms in the northeastern United States into the middle of March.</p><p>"There is potential for one or two more storms beyond the storm from March 2 to cause damage and major disruptions in the Northeast," Pastelok said.</p><p>There is a chance of another SSW and a displacement of the Polar Vortex into April, but most likely less impact would be felt.</p><p>"The role the position of the Polar Vortex plays during the spring diminishishes over time, on average," according to AccuWeather Meteorologist Max Vido.</p><p>The strengthening sun plays an increasing role beginning at the mid-latitudes and expands northward as the spring progresses.</p>
+
+
+
+                            <p><a href="http://www.accuweather.com/en/contact?type&#x3D;typo" style="color:#f05514;font-size:11px;">Report a Typo</a></p>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+
+                    <div class="full-width-button">
+                         <div class="full-width-button">
+    <a href="https://www.accuweather.com/en/weather-news">
+        <div class="cta">Weather News </div>
+        <div class="arrow"> > </div>
+    </a>
+</div>
+
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+        <div class="panel">
+            <div class="panel-head-rt">
+                <div class="panel-head-lt">
+                    <div class="panel-head"></div>
+                </div>
+            </div>
+            <div class="panel-body-lt">
+                <div class="panel-body-rt">
+                    <div class="panel-body comments">
+                        <div class="panel-body-content">
+
+                                <div class="panel-title">
+                                    <h3>Comments</h3>
+                                </div>
+
+
+
+                                <h6 style="color:#9B9A98;margin:15px 0 20px 0;"><p>Comments that don't add to the conversation may be automatically or manually removed by Facebook or AccuWeather. Profanity, personal attacks, and spam will not be tolerated.</p></h6>
+
+
+                            <div id="fb-root"></div>
+                            <script src="https://connect.facebook.net/en_US/all.js#appId&#x3D;132437483467956&amp;xfbml&#x3D;1"></script>
+                            <div class="fb-comments" data-href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292" data-width="600" data-num-posts="10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-foot-lt">
+                <div class="panel-foot-rt">
+                    <div class="panel-foot"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+<div class="panel">
+    <div class="panel-head-rt">
+        <div class="panel-head-lt">
+            <div class="panel-head"></div>
+        </div>
+    </div>
+    <div class="panel-body-lt">
+        <div class="panel-body-rt">
+            <div class="panel-body">
+                <div class="news-feed panel-body-content">
+
+                        <h3>More Weather News</h3>
+
+
+
+                        <ul class="articles">
+
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/photos-goes-s-launches-joining-noaas-fleet-of-high-definition-weather-satellites/70004307" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/5770353/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fe3%2F99%2F7b63e53046fbb5cb6e8b5858dd5f%2Fgoes-s-launch.32.41%20PM.png" alt="GOES-S launch" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/photos-goes-s-launches-joining-noaas-fleet-of-high-definition-weather-satellites/70004307">Photos: GOES-S launches, joining NOAA’s fleet of high-definition weather satellites</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/photos-goes-s-launches-joining-noaas-fleet-of-high-definition-weather-satellites/70004307" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 6:34:22 PM EST
+        </h5>
+
+        <p><p>Thousands of people converged on Cape Canaveral, Florida, to watch NOAA’s newest weather satellite launch on Thursday afternoon.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/condiciones-frias-se-apoderan-de-toda-la-costa-este-de-los-estados-unidos/70004306" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/f84583c/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fae%2Fc4%2Fd7029a2140488fd9752aeea4f1fb%2Fwebp.net-resizeimage.jpg" alt="Spain Europe Weather" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/condiciones-frias-se-apoderan-de-toda-la-costa-este-de-los-estados-unidos/70004306">Condiciones frías se apoderan de toda la costa este de los Estados Unidos</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/condiciones-frias-se-apoderan-de-toda-la-costa-este-de-los-estados-unidos/70004306" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 3:14:43 PM EST
+        </h5>
+
+        <p><p>El paso de lo que es la segunda tormenta invernal registrada durante este año, traerá efectos desde Nueva York hasta Florida y parte del Caribe.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/spain-portugal-brace-for-more-rain-flooding-following-storm-emmas-wrath/70004304" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/fa0f0e4/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fea%2Fd9%2F88e454814e5e8c67845fd5bc65ac%2Fspainrain-31.jpg" alt="SpainRain 3.1" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/spain-portugal-brace-for-more-rain-flooding-following-storm-emmas-wrath/70004304">Spain, Portugal brace for more rain and flooding following Storm Emma&#x27;s wrath</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/spain-portugal-brace-for-more-rain-flooding-following-storm-emmas-wrath/70004304" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 1:31:43 PM EST
+        </h5>
+
+        <p><p>Following Storm Emma, rounds of rain will continue to batter Portugal and Spain, further threatening flooding issues.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/what-is-a-lahar/70004295" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/1b22c47/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F8a%2F05%2Fb240a6c743c79268a42a6c5c172a%2Flahar-ap-photo.jpg" alt="lahar ap photo" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/what-is-a-lahar/70004295">What is a lahar? </a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/what-is-a-lahar/70004295" class="cat">Weather News </a>
+
+
+
+
+        </h5>
+
+        <p><p>A powerful mudflow called a lahar is one of the most dangerous threats that can arise from a volcano.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/9f5dd7a/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F47%2F9a%2Fb0e498394694926aad65bafbb438%2Fstatic-north-pole-thaw.jpg" alt="Static North Pole Thaw" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292">Extraordinary warmth envelops Arctic as Polar Vortex dislodges cold air to US, Europe</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 3:08:17 PM EST
+        </h5>
+
+        <p><p>In February, a split in the Polar Vortex allowed cold air to plunge southward into Europe and parts of the United States as warm air surged northward to the North Pole.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/storm-emma-to-produce-travel-disrupting-snow-winds-across-ireland-and-uk-into-friday/70004290" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/3459814/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F0d%2Fa6%2F0d31723846fe85e21be5ff211813%2Fuksnow-metric-31.jpg" alt="UKSnow-Metric 3.1" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/storm-emma-to-produce-travel-disrupting-snow-winds-across-ireland-and-uk-into-friday/70004290">Storm Emma to produce travel-disrupting snow, winds across Ireland and UK into Friday</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/storm-emma-to-produce-travel-disrupting-snow-winds-across-ireland-and-uk-into-friday/70004290" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 12:53:27 PM EST
+        </h5>
+
+        <p><p>Following the "Beast from the East," which brought cold and snow to British Isles already this week, Storm Emma will bring another round of snow and wind through Friday.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/noreaster-to-become-bomb-cyclone-fierce-winds-flooding-snow-and-coastal-havoc-on-tap/70004298" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/12eadc3/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fcf%2F4d%2F4587043d455ebfce3ca6cc22df92%2Fstatic-high-winds-3-pm.jpg" alt="Static High Winds 3 pm" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/noreaster-to-become-bomb-cyclone-fierce-winds-flooding-snow-and-coastal-havoc-on-tap/70004298">Nor&#x27;easter to become bomb cyclone: Fierce winds, flooding, snow and coastal havoc on tap</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/noreaster-to-become-bomb-cyclone-fierce-winds-flooding-snow-and-coastal-havoc-on-tap/70004298" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 3:29:09 PM EST
+        </h5>
+
+        <p><p>An already potent storm will track off the Atlantic coast and become a bomb cyclone that is likely to cause high winds, coastal flooding and heavy wet snow in the northeastern United States centered on Friday.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/how-horticulturalists-determine-the-peak-bloom-date-of-washington-dcs-cherry-blossoms/70004297" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/01cbeb7/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fe5%2Fd8%2F81fa5eef4966932f4e7e7b784b3d%2Fdc-cherry-blossoms-2017-ap.jpg" alt="DC cherry blossoms 2017 - AP" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/how-horticulturalists-determine-the-peak-bloom-date-of-washington-dcs-cherry-blossoms/70004297">Attending the National Cherry Blossom Festival: What you need to know about the peak bloom date </a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/how-horticulturalists-determine-the-peak-bloom-date-of-washington-dcs-cherry-blossoms/70004297" class="cat">Weather News </a>
+
+
+
+
+        </h5>
+
+        <p><p>Prior to the famous National Cherry Blossom Festival each year, the National Park Service announces the projected peak bloom date of the popular flowers.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/photos-goes-s-launches-joining-noaas-fleet-of-high-definition-weather-satellites/70004307" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/5770353/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fe3%2F99%2F7b63e53046fbb5cb6e8b5858dd5f%2Fgoes-s-launch.32.41%20PM.png" alt="GOES-S launch" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/photos-goes-s-launches-joining-noaas-fleet-of-high-definition-weather-satellites/70004307">Photos: GOES-S launches, joining NOAA’s fleet of high-definition weather satellites</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/photos-goes-s-launches-joining-noaas-fleet-of-high-definition-weather-satellites/70004307" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 6:34:22 PM EST
+        </h5>
+
+        <p><p>Thousands of people converged on Cape Canaveral, Florida, to watch NOAA’s newest weather satellite launch on Thursday afternoon.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/condiciones-frias-se-apoderan-de-toda-la-costa-este-de-los-estados-unidos/70004306" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/f84583c/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fae%2Fc4%2Fd7029a2140488fd9752aeea4f1fb%2Fwebp.net-resizeimage.jpg" alt="Spain Europe Weather" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/condiciones-frias-se-apoderan-de-toda-la-costa-este-de-los-estados-unidos/70004306">Condiciones frías se apoderan de toda la costa este de los Estados Unidos</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/condiciones-frias-se-apoderan-de-toda-la-costa-este-de-los-estados-unidos/70004306" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 3:14:43 PM EST
+        </h5>
+
+        <p><p>El paso de lo que es la segunda tormenta invernal registrada durante este año, traerá efectos desde Nueva York hasta Florida y parte del Caribe.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/spain-portugal-brace-for-more-rain-flooding-following-storm-emmas-wrath/70004304" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/fa0f0e4/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fea%2Fd9%2F88e454814e5e8c67845fd5bc65ac%2Fspainrain-31.jpg" alt="SpainRain 3.1" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/spain-portugal-brace-for-more-rain-flooding-following-storm-emmas-wrath/70004304">Spain, Portugal brace for more rain and flooding following Storm Emma&#x27;s wrath</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/spain-portugal-brace-for-more-rain-flooding-following-storm-emmas-wrath/70004304" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 1:31:43 PM EST
+        </h5>
+
+        <p><p>Following Storm Emma, rounds of rain will continue to batter Portugal and Spain, further threatening flooding issues.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/what-is-a-lahar/70004295" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/1b22c47/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F8a%2F05%2Fb240a6c743c79268a42a6c5c172a%2Flahar-ap-photo.jpg" alt="lahar ap photo" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/what-is-a-lahar/70004295">What is a lahar? </a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/what-is-a-lahar/70004295" class="cat">Weather News </a>
+
+
+
+
+        </h5>
+
+        <p><p>A powerful mudflow called a lahar is one of the most dangerous threats that can arise from a volcano.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/9f5dd7a/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F47%2F9a%2Fb0e498394694926aad65bafbb438%2Fstatic-north-pole-thaw.jpg" alt="Static North Pole Thaw" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292">Extraordinary warmth envelops Arctic as Polar Vortex dislodges cold air to US, Europe</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 3:08:17 PM EST
+        </h5>
+
+        <p><p>In February, a split in the Polar Vortex allowed cold air to plunge southward into Europe and parts of the United States as warm air surged northward to the North Pole.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/storm-emma-to-produce-travel-disrupting-snow-winds-across-ireland-and-uk-into-friday/70004290" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/3459814/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F0d%2Fa6%2F0d31723846fe85e21be5ff211813%2Fuksnow-metric-31.jpg" alt="UKSnow-Metric 3.1" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/storm-emma-to-produce-travel-disrupting-snow-winds-across-ireland-and-uk-into-friday/70004290">Storm Emma to produce travel-disrupting snow, winds across Ireland and UK into Friday</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/storm-emma-to-produce-travel-disrupting-snow-winds-across-ireland-and-uk-into-friday/70004290" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 12:53:27 PM EST
+        </h5>
+
+        <p><p>Following the "Beast from the East," which brought cold and snow to British Isles already this week, Storm Emma will bring another round of snow and wind through Friday.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/noreaster-to-become-bomb-cyclone-fierce-winds-flooding-snow-and-coastal-havoc-on-tap/70004298" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/12eadc3/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fcf%2F4d%2F4587043d455ebfce3ca6cc22df92%2Fstatic-high-winds-3-pm.jpg" alt="Static High Winds 3 pm" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/noreaster-to-become-bomb-cyclone-fierce-winds-flooding-snow-and-coastal-havoc-on-tap/70004298">Nor&#x27;easter to become bomb cyclone: Fierce winds, flooding, snow and coastal havoc on tap</a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/noreaster-to-become-bomb-cyclone-fierce-winds-flooding-snow-and-coastal-havoc-on-tap/70004298" class="cat">Weather News </a> -
+
+
+
+            March 01, 2018, 3:29:09 PM EST
+        </h5>
+
+        <p><p>An already potent storm will track off the Atlantic coast and become a bomb cyclone that is likely to cause high winds, coastal flooding and heavy wet snow in the northeastern United States centered on Friday.</p></p>
+    </div>
+</li>
+
+
+        <li>
+
+        <a href="https://www.accuweather.com/en/weather-news/how-horticulturalists-determine-the-peak-bloom-date-of-washington-dcs-cherry-blossoms/70004297" class="wrap">
+            <img src="https://accuweather.brightspotcdn.com/dims4/default/01cbeb7/2147483647/thumbnail/120x90%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fe5%2Fd8%2F81fa5eef4966932f4e7e7b784b3d%2Fdc-cherry-blossoms-2017-ap.jpg" alt="DC cherry blossoms 2017 - AP" />
+        </a>
+
+
+    <div class="info">
+        <h4>
+            <a href="https://www.accuweather.com/en/weather-news/how-horticulturalists-determine-the-peak-bloom-date-of-washington-dcs-cherry-blossoms/70004297">Attending the National Cherry Blossom Festival: What you need to know about the peak bloom date </a>
+        </h4>
+
+        <h5>
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/how-horticulturalists-determine-the-peak-bloom-date-of-washington-dcs-cherry-blossoms/70004297" class="cat">Weather News </a>
+
+
+
+
+        </h5>
+
+        <p><p>Prior to the famous National Cherry Blossom Festival each year, the National Park Service announces the projected peak bloom date of the popular flowers.</p></p>
+    </div>
+</li>
+
+
+</ul>
+
+
+
+
+                        <div class="full-width-button">
+                            <a href="https://www.accuweather.com/en/weather-news">
+                                <div class="cta">More Weather News</div>
+                                <div class="arrow"></div>
+                            </a>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-foot-lt">
+        <div class="panel-foot-rt">
+            <div class="panel-foot"></div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<!-- /.column-1 -->
+
+
+
+<div class="column-2  clearfix">
+
+
+
+<div id="trending-now" class="slate-panel">
+    <div class="slate-panel__content">
+
+                <h2 class="slate-panel__title">
+
+                        Trending News
+
+                </h2>
+
+        <div class="slate-panel__list">
+
+                <a class="slate-panel__list-item" href="https://www.accuweather.com/en/videos/expert-forecasts/late-week-storm-to-blast-midwest-northeast/rrnhzqyte6vho8jf_-rhi9xuduyaq704" data-event-tracking data-event-tracking-weight="1" data-event-tracking-category="ModuleTracking" data-event-tracking-module="TrendingLinkListModule" data-event-tracking-pid="70004292">
+
+
+    Potent storm to pummel Northeast with multitude of impacts
+</a>
+
+
+                <a class="slate-panel__list-item" href="https://www.accuweather.com/en/videos/this-cat-trying-to-catch-snowballs-may-be-the-best-thing-you-see-all-day/00a25qzte6cs3cpb-c16dw7nxqinfv9p" data-event-tracking data-event-tracking-weight="1" data-event-tracking-category="ModuleTracking" data-event-tracking-module="TrendingLinkListModule" data-event-tracking-pid="70004292">
+
+
+    Cat trying to catch snowballs may be best thing you see all day
+</a>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div id="aadTop300" class="panel">
+  <div class="panel-head-lt">
+    <div class="panel-head-rt">
+      <div class="panel-head"></div>
+    </div>
+  </div>
+
+  <div class="panel-body-lt">
+    <div class="panel-body-rt">
+        <div id="top-panel-body-rt-body" class="ad-lr panel-body">
+            <div id="top_right" ></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="panel-foot-lt">
+    <div class="panel-foot-rt">
+      <div class="panel-foot"></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+    <div class="subtle large-sidebar-module trending-promo-list">
+
+            <h3>TRENDING NOW</h3>
+
+
+
+            <div class="trending-article">
+    <div class="panel-body-content">
+        <div class="article">
+
+                <a href="https://www.accuweather.com/en/weather-news/does-winters-harsh-cold-air-mean-lower-tick-activity-during-spring-summer/70004197" class="wrap">
+                    <img src="https://accuweather.brightspotcdn.com/dims4/default/6e7666a/2147483647/thumbnail/340x200%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fda%2F9c%2F595beb1a482f8f6862fba6fd9f87%2Fticks-021918.jpg" alt="Ticks 021918" />
+                </a>
+
+
+            <div class="info">
+
+                    <h4>
+                        <a href="https://www.accuweather.com/en/weather-news/does-winters-harsh-cold-air-mean-lower-tick-activity-during-spring-summer/70004197">Does winter&#x27;s harsh cold air mean lower tick activity during spring, summer?</a>
+                    </h4>
+
+
+
+                    <p>The common thought is that a harsh winter will mean that ticks won't be as bad as they could be in the summer. However, experts say this isn't entirely true.</p>
+
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/does-winters-harsh-cold-air-mean-lower-tick-activity-during-spring-summer/70004197" class="rt more">Read Story</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <div class="trending-article">
+    <div class="panel-body-content">
+        <div class="article">
+
+                <a href="https://www.accuweather.com/en/weather-news/equinox-may-hold-the-secret-to-the-mysterious-alignment-of-egyptian-pyramids/70004283" class="wrap">
+                    <img src="https://accuweather.brightspotcdn.com/dims4/default/48f63dd/2147483647/thumbnail/340x200%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Ff5%2Ff8%2F887deb8b440bb9214ff482f4ee2d%2Fegypt-pyramids-pixabay-creative-commons.jpg" alt="Egypt Pyramids - Pixabay Creative Commons" />
+                </a>
+
+
+            <div class="info">
+
+                    <h4>
+                        <a href="https://www.accuweather.com/en/weather-news/equinox-may-hold-the-secret-to-the-mysterious-alignment-of-egyptian-pyramids/70004283">Equinox may hold the secret to the mysterious alignment of Egyptian pyramids </a>
+                    </h4>
+
+
+
+                    <p>An engineer who studies ancient Egyptian architecture has proposed a theory regarding the equinox that could hold the secret to the near perfect alignment of the pyramids.</p>
+
+
+
+                    <a href="https://www.accuweather.com/en/weather-news/equinox-may-hold-the-secret-to-the-mysterious-alignment-of-egyptian-pyramids/70004283" class="rt more">Read Story</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+            <div class="divide controls">
+                <div class="sponsor-330x40"></div>
+                <div class="full-width-button">
+                    <a href="https://www.accuweather.com/en/features/trend">
+                        <div class="cta">More Trending Now</div>
+                        <div class="arrow"> &gt; </div>
+                    </a>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+
+<div id="aadBot300" class="panel panel-ad-mr">
+  <div class="panel-head-lt">
+    <div class="panel-head-rt">
+      <div class="panel-head"></div>
+    </div>
+  </div>
+  <div class="panel-body-lt">
+    <div class="panel-body-rt">
+        <div id="bottom-panel-body" class="panel-body">
+            <div id="bottom_right" ></div>
+        </div>
+    </div>
+  </div>
+  <div class="panel-foot-lt">
+    <div class="panel-foot-rt">
+      <div class="panel-foot"> </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+</div>
+
+<!-- /.column-2 -->
+
+
+<div id="offers" class="offers-extras">
+
+        <div class="panel">
+    <div class="panel-head-lt">
+        <div class="panel-head-rt">
+            <div class="panel-head"></div>
+        </div>
+    </div>
+    <div class="panel-body-lt">
+        <div class="panel-body-rt">
+            <div class="panel-body">
+                <div class="panel-body-content">
+
+
+
+                            <a href="https://www.accuweather.com/en/free-weather-widgets?utm_source&#x3D;adc&amp;utm_medium&#x3D;ExtraAd&amp;utm_campaign&#x3D;FreeWidget" target="_blank"><img src="https://accuweather.brightspotcdn.com/dims4/default/0a598f5/2147483647/thumbnail/300x140%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2F03%2Fc0%2F59b0165e4c049b0356109f7a699e%2Faccuweather-widgets.png" alt="AccuWeather Widgets" /></a>
+
+
+
+
+
+                        <h3></h3>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-foot-lt">
+        <div class="panel-foot-rt">
+            <div class="panel-foot"></div>
+        </div>
+    </div>
+</div>
+
+
+        <div class="panel">
+    <div class="panel-head-lt">
+        <div class="panel-head-rt">
+            <div class="panel-head"></div>
+        </div>
+    </div>
+    <div class="panel-body-lt">
+        <div class="panel-body-rt">
+            <div class="panel-body">
+                <div class="panel-body-content">
+
+
+
+                            <a href="https://itunes.apple.com/us/app/accuweather-weather-for-life/id300048137?mt&#x3D;8" target="_blank"><img src="https://accuweather.brightspotcdn.com/dims4/default/b0b9bad/2147483647/thumbnail/300x140%3E/quality/90/?url&#x3D;http%3A%2F%2Faccuweather-bsp.s3.amazonaws.com%2Fc7%2F7e%2F321bbe9f4510a0472ca1388f7008%2Faccuweather-app.png" alt="AccuWeather App" /></a>
+
+
+
+
+
+                        <h3></h3>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-foot-lt">
+        <div class="panel-foot-rt">
+            <div class="panel-foot"></div>
+        </div>
+    </div>
+</div>
+
+
+        <div class="panel scroll-panel">
+    <div class="panel-head-lt">
+        <div class="panel-head-rt">
+            <div class="panel-head"></div>
+        </div>
+    </div>
+    <div class="panel-body-lt">
+        <div class="panel-body-rt">
+            <div class="panel-body">
+                <div class="panel-body-content">
+
+
+
+
+
+                        <h3></h3>
+
+
+
+                        <ul class="scroll-area scrollbar">
+
+                                <li><a href="https://getaccuweather.tv/" target="_blank">The AccuWeather Network</a></li>
+
+                                <li><a href="https://www.netatmo.com/product/station" target="_blank">Netatmo Weather Station</a></li>
+
+                                <li><a href="https://www.accuweather.com/en/free-weather-widgets?utm_source&#x3D;adc&amp;utm_medium&#x3D;ExtraAd&amp;utm_campaign&#x3D;FreeWidget" target="_blank">Free Weather For Your Site</a></li>
+
+                                <li><a href="https://wwwl.accuweather.com/pro_login.php" target="_blank">Try RadarPro™ Today</a></li>
+
+                                <li><a href="https://www.netatmo.com/en-US/product/station" target="_blank">The Weather Station for Smartphone</a></li>
+
+                                <li><a href="https://play.google.com/store/apps/details?id&#x3D;com.accuweather.android&amp;hl&#x3D;en" target="_blank">AccuWeather for Android</a></li>
+
+                                <li><a href="https://accuweatherstore.com/" target="_blank">The AccuWeather Store</a></li>
+
+                                <li><a href="https://enterprisesolutions.accuweather.com/skyguard" target="_blank">Site Specific Severe Weather Warnings</a></li>
+
+                                <li><a href="https://itunes.apple.com/us/app/accuweather-weather-for-life/id300048137?mt&#x3D;8" target="_blank">AccuWeather - Weather for Life</a></li>
+
+                                <li><a href="https://www.accuweatherglobal.com/default.php" target="_blank">Telemet Data Feeds</a></li>
+
+                                <li><a href="https://itunes.apple.com/us/app/yourcaster/id1055725052?mt&#x3D;8" target="_blank">YourCaster for iOS</a></li>
+
+                                <li><a href="https://www.netatmo.com/product/station" target="_blank">The Weather Station by Netatmo</a></li>
+
+                        </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-foot-lt">
+        <div class="panel-foot-rt">
+            <div class="panel-foot"></div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+            </div>
+            <!-- /#content -->
+        </div>
+        <!-- /#wrap-content -->
+    </div>
+
+     <div id="footer">
+    <div id="footer-content-wrapper">
+        <div class="logo-ad">
+            <h5 class="logo">AccuWeather.com</h5>
+            <div id="footer-stevem">
+                <div id="bottom" ></div>
+            </div>
+        </div>
+
+    <div id="custom-goog-search">
+        <style type="text/css">
+            @import url(https://www.google.com/cse/api/branding.css);
+        </style>
+        <div class="cse-branding-right" style="color:#000000">
+            <div class="cse-branding-form">
+                <form action="https://www.google.com" id="cse-search-box" target="_blank">
+                    <div>
+                        <input type="hidden" name="cx" value="partner-pub-5771594739411148:7839492073" />
+                        <input type="hidden" name="ie" value="UTF-8" />
+                        <input id="goog-cse-input" type="text" name="q" size="100" />
+                        <input id="goog-cse-submit" type="submit" name="sa" value="" />
+                    </div>
+                </form>
+            </div>
+            <div class="cse-branding-logo">
+                <img src="https://vortex.accuweather.com/adc2010/images/misc/googlelogo.png" alt="Google" />
+            </div>
+            <div class="cse-branding-text">
+                Custom Search
+            </div>
+        </div>
+    </div>
+
+<div id="footer">
+    <div id="footer-content-wrapper">
+        <div class="logo-ad">
+            <h5 class="logo">AccuWeather.com</h5>
+            <div id="footer-stevem">
+                <div id="footer-stevem-ps"></div>
+            </div>
+        </div>
+
+        <div id="footer-nav-main" class="clearfix">
+            <div id="footer-nav-inner">
+
+                    <div>
+
+        <ul>
+
+        <li class="head">COMPANY</li>
+
+
+
+        <li><a href="https://corporate.accuweather.com/" target="_top">Superior Accuracy in Action</a></li>
+
+
+        <li><a href="https://corporate.accuweather.com/" target="_blank">About AccuWeather</a></li>
+
+
+        <li><a href="https://mediakit.accuweather.com/" target="_blank">Media Kit</a></li>
+
+
+        <li><a href="https://careers.accuweather.com/" target="_blank">Careers</a></li>
+
+
+        <li><a href="https://www.accuweather.com/en/press" target="_blank">Press</a></li>
+
+
+        <li><a href="https://www.accuweather.com/en/contact" target="_blank">Contact Us</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+                    <div>
+
+        <ul>
+
+        <li class="head">PRODUCTS & SERVICES</li>
+
+
+
+        <li><a href="https://enterprisesolutions.accuweather.com/" target="_blank">Enterprise Solutions</a></li>
+
+
+        <li><a href="https://d3.accuweather.com/" target="_blank">AccuWeather D3</a></li>
+
+
+        <li><a href="https://getaccuweather.tv/?utm_source&#x3D;adc&amp;utm_medium&#x3D;icon&amp;utm_campaign&#x3D;footer" target="_blank">AccuWeather Network</a></li>
+
+
+        <li><a href="https://storyteller.accuweather.com/" target="_blank">StoryTeller</a></li>
+
+
+        <li><a href="https://corporate.accuweather.com/broadcast" target="_blank">Tools for Broadcast</a></li>
+
+
+        <li><a href="https://corporate.accuweather.com/radio" target="_blank">Radio & Newspaper</a></li>
+
+
+        <li><a href="https://developer.accuweather.com" target="_blank">AccuWeather APIs</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+                    <div>
+
+        <ul>
+
+        <li class="head">APPS & DOWNLOADS</li>
+
+
+
+        <li><a href="https://itunes.apple.com/us/app/accuweather-weather-for-life/id300048137?mt&#x3D;8" target="_blank">iPhone App</a></li>
+
+
+        <li><a href="https://play.google.com/store/apps/details?id&#x3D;com.accuweather.android" target="_blank">Android App</a></li>
+
+
+        <li><a href="https://www.microsoft.com/en-us/store/p/accuweather-weather-for-life/9wzdncrfj1cf " target="_blank">Windows App</a></li>
+
+
+        <li><a href="https://downloads.accuweather.com/" target="_blank">See all Apps & Downloads</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+                    <div>
+
+        <ul>
+
+        <li class="head">SUBSCRIPTION SERVICES</li>
+
+
+
+        <li><a href="https://wwwl.accuweather.com/premium_login.php" target="_blank">AccuWeather Premium</a></li>
+
+
+        <li><a href="https://wwwl.accuweather.com/pro_login.php" target="_blank">AccuWeather Professional</a></li>
+
+
+</ul>
+
+
+        <ul class="footer-social">
+
+
+
+        <li class="apps"><a href="https://downloads.accuweather.com/" target="_blank">Apps & Downloads</a></li>
+
+
+        <li class="fb"><a href="https://www.facebook.com/AccuWeather" target="_blank">Facebook</a></li>
+
+
+        <li class="twt"><a href="https://twitter.com/BreakingWeather" target="_blank">Follow Us</a></li>
+
+
+        <li class="utube"><a href="https://getaccuweather.tv/?utm_source&#x3D;adc&amp;utm_medium&#x3D;icon&amp;utm_campaign&#x3D;footer" target="_blank">Watch Us</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+            </div>
+        </div>
+
+
+            <div id="footer-tm">
+                <div class="footer-tm-inner"><p>© 2018 AccuWeather, Inc. All Rights Reserved. AccuWeather.com is a registered trademark of AccuWeather, Inc. <a href="https://www.accuweather.com/en/legal">Terms of usage</a> under which this service is provided <a href="https://www.accuweather.com/en/privacy">Privacy Statement</a> | <a href="https://www.accuweather.com/en/privacy#adChoices">Ad Choices</a></p></div>
+            </div>
+
+    </div>
+</div>
+
+      <!-- /#footer-info -->
+    </div>
+    <!-- /#footer-content-wrapper -->
+  </div>
+<!-- /#footer -->
+
+
+<div id="tracking-pixels"></div>
+
+</div>
+<!-- /#wrap -->
+    <div class="vcard">
+        <span class="adr">
+            <span class="locality">
+                    <span class="value-title" title="New York"></span>
+            </span>
+            <abbr class="region" title="New York">
+                    <span class="value-title" title="NY"></span>
+            </abbr>
+            <span class="postal-code">
+                        <span class="value-title" title="10007"></span>
+            </span>
+            <abbr class="country-name" title="United States">
+                    <span class="value-title" title="US"></span>
+            </abbr>
+        </span>
+        <span class="geo">
+            <span class="latitude">
+                    <span class="value-title" title="40.779"></span>
+            </span>
+            <span class="longitude">
+                <span class="value-title" title="-73.969"></span>
+            </span>
+        </span>
+    </div>
+
+    <script type="text/javascript">
+        var _qoptions = { qacct: 'p-4b4gl_1fWISuU' };
+        if (typeof (apgPageInfoObj) != 'undefined' && apgPageInfoObj.crumb_trail) {
+            _qoptions.labels = apgPageInfoObj.crumb_trail.join('.');
+        }
+    </script>
+    <script type="text/javascript">
+    document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        COMSCORE.beacon({
+                c1: 2,
+                c2: "6005068",
+                c3: "6005068",
+                //c4: "http://www.accuweather.com/en/weather-news/polar-vortex-split-caused-north-pole-thaw-and-snow-to-dip-to-california-and-the-mediterranean-sea/70004292",
+                c5: "",
+                c6: "",
+                c15: "C67BD3C1"
+        });
+    } catch(e){}
+    </script>
+    <noscript>
+    <img src="https://sb.scorecardresearch.com/b?c1=&c2=6005068&c3=6005068&c15=C67BD3C1&cv=1.3&cj=1" style="display:none" width="0" height="0" alt="" />
+        </noscript>
+    <script type="text/javascript">
+        (function () {
+            var d = new Image(1, 1);
+            d.onerror = d.onload = function () {
+                d.onerror = d.onload = null;
+            };
+            d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-accuweather&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
+        })();
+    </script>
+    <noscript>
+    <img style="display:none;" src="//secure-us.imrworldwide.com/cgi-bin/m?ci=us-accuweather&amp;cg=0&amp;cc=1&amp;ts=noscript" width="1" height="1" alt="" />
+    </noscript>
+    <script type="text/javascript">
+        var google_conversion_id = 1013122394;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <script type="text/javascript" src="https://ap.lijit.com/www/sovrn_beacon_standalone/sovrn_standalone_beacon.js?iid=12058463" id="sBeacon"></script>
+    <script>
+        (function() {
+            var _fbq = window._fbq || (window._fbq = []);
+            if (!_fbq.loaded)
+            { var fbds = document.createElement('script'); fbds.async = true; fbds.src = '//connect.facebook.net/en_US/fbds.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fbds, s); _fbq.loaded = true; }
+            _fbq.push(['addPixelId', '513722158765166']);
+        })();
+        window._fbq = window._fbq || [];
+        window._fbq.push(['track', 'PixelInitialized', {}]);
+    </script>
+    <script>
+        (function() {
+            var _fbq = window._fbq || (window._fbq = []);
+            if (!_fbq.loaded) { var fbds = document.createElement('script'); fbds.async = true; fbds.src = '//connect.facebook.net/en_US/fbds.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fbds, s); _fbq.loaded = true; }
+        })();
+        window._fbq = window._fbq || [];
+        window._fbq.push(['track', '6020195729798',
+        {'value':'0.00','currency':'CAD'}
+        ]);
+    </script>
+    <noscript>
+
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1013122394/?value=0&guid=ON&script=0" />
+        </div>
+        <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=513722158765166&ev=PixelInitialized" />
+        <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6020195729798&cd[value]=0.00&cd[currency]=CAD&noscript=1" />
+        <img src="https://sb.scorecardresearch.com/p?c1=2&c2=6005068&cv=2.0&cj=1" />
+
+    </noscript>
+
+
+</body>
+
+</html>
