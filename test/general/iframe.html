@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script type="text/javascript">
+    //start timers
+  //  console.time("PLAYER_LOAD_TIME");
+  //  console.time("PLAYER_TIME_TO_FIRST_FRAME");
+  </script>
+  <script src="http://player.ooyala.com/core/82ab589479404e4ab1dd87b49aaa0354"></script>
+</head>
+<body>
+  <div  id="videocontainer" >
+      <script type="text/javascript">
+          var playerParam = {
+              "pcode": "x2aDkyOt2q3WtOCp-krSyDffASzL",
+              "playerBrandingId": "82ab589479404e4ab1dd87b49aaa0354",
+              "autoplay": true,
+              "encodingPriority": ["hls", "hds", "dash", "mp4"],
+              "iosPlayMode":"inline",
+              onCreate: window.onCreate
+          };
+        //  playerParam.playlistsPlugin.data = getParam
+
+          function onCreate(player) {
+              "use strict";
+              player.mb.subscribe("*", "example", function (eventName, params) {
+                  switch (eventName) {
+                    case OO.EVENTS.PLAYBACK_READY:
+                      console.log("PLAYER_LOAD_TIME");
+                      break;
+                    case OO.EVENTS.PLAYING:
+                        console.log("PLAYER_TIME_TO_FIRST_FRAME");
+                      break;
+                    default:
+                      break;
+                  }
+              });
+          }
+
+          OO.ready(function () {
+              window.pp = OO.Player.create("videocontainer", "JjMWd1ZDE6VW3ylyPcajnpdTV2Xm04Yb", playerParam);
+          });
+     </script>
+  </div>
+</body>
+
+</html>
